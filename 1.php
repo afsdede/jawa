@@ -7,7 +7,7 @@ use src\CarroBundle\Entity\CarroBundle;
 //use src\CarroBundle\CarroBundle;
 
 function __autoload($class) {
-	echo "O!";
+    echo "O!";
     var_dump($class);
     $class = str_replace('\\', '/', $class) . '.php';
     require_once($class);
