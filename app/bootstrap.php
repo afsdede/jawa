@@ -7,9 +7,14 @@ define('MAIN_ROOT', realpath(__DIR__.DS.'..'));
 define('APP_ROOT', realpath(__DIR__.DS));
 
 if (!file_exists(APP_ROOT.DS.'KernelEngine.php')){
-    throw new Exception(APP_ROOT.'KernelEngine.php'."Kernel not found!");
+    throw new Exception(APP_ROOT.'KernelEngine.php'." - Kernel not found!");
+}
+
+if (!file_exists(APP_ROOT.DS.'connection.php')){
+    throw new Exception(APP_ROOT.'connection.php'." - Configuration not found!");
 }
 
 require_once APP_ROOT.DS.'KernelEngine.php';
+require_once APP_ROOT.DS.'connection.php';
 
 ?>

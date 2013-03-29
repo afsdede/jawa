@@ -1,4 +1,5 @@
 <?php
+namespace KernelEngine;
 
 require_once realpath(__DIR__.'/../src/Symfony/Component/ClassLoader/UniversalClassLoader.php');
 
@@ -22,6 +23,7 @@ class KernelEngine{
         $loader->register();
         $loader->registerNamespaces(array(
             "Symfony\Component" => __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'src',
+            "KernelBundle" => __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'src',
             "CarroBundle" => __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'src',
             "UserBundle" => __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'src',
         ));
