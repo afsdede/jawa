@@ -13,6 +13,8 @@ class Categoria implements Entity{
     
     private $id;
     
+    private $parent;
+    
     private $name;
     
     private $active;
@@ -23,6 +25,14 @@ class Categoria implements Entity{
 
     public function setId($id) {
         $this->id = $id;
+    }
+
+    public function getParent() {
+        return $this->parent;
+    }
+
+    public function setParent($parent) {
+        $this->parent = $parent;
     }
 
     public function getName() {
@@ -44,6 +54,7 @@ class Categoria implements Entity{
     public function assocEntity() {
         $fields = array(
             "cat_10_id"          => $this->getId(),
+            "cat_10_parent"      => $this->getParent(),
             "cat_30_nome"        => $this->getName(),
             "cat_12_active"      => $this->getActive(),
         );
@@ -54,6 +65,7 @@ class Categoria implements Entity{
     public function fetchEntity($row) {
         
         $this->setId($row['cat_10_id']);
+        $this->setParent($row['cat_10_parent']);
         $this->setName($row['cat_30_nome']);
         $this->setActive($row['cat_12_active']);
         

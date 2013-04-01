@@ -1,6 +1,6 @@
 <?php
 
-namespace ClienteBundle\Entity;
+namespace DocumentBundle\Entity;
 
 use KernelBundle\Model\Entity;
 
@@ -9,7 +9,7 @@ use KernelBundle\Model\Entity;
  *
  * @author andre
  */
-class Cliente implements Entity{
+class Document implements Entity{
     
     function __construct(){
         
@@ -24,6 +24,8 @@ class Cliente implements Entity{
     private $name;
     
     private $path;
+    
+    private $archive;
     
     private $active;
     
@@ -57,6 +59,14 @@ class Cliente implements Entity{
 
     public function setPath($path) {
         $this->path = $path;
+    }
+    
+    public function getArchive() {
+        return $this->archive;
+    }
+
+    public function setArchive($archive) {
+        $this->archive = $archive;
     }
 
     public function getActive() {
