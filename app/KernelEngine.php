@@ -24,8 +24,9 @@ class KernelEngine{
         $loader->registerNamespaces(array(
             "Symfony\Component" => __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'src',
             "KernelBundle" => __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'src',
-            "CarroBundle" => __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'src',
             "UserBundle" => __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'src',
+            "ClienteBundle" => __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'src',
+            "DocumentBundle" => __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'src',
         ));
     }
     

@@ -1,0 +1,104 @@
+<?php
+
+namespace ClienteBundle\Entity;
+
+use KernelBundle\Model\Entity;
+
+/**
+ * Class that maps the client
+ *
+ * @author andre
+ */
+class Cliente implements Entity{
+    
+    function __construct(){
+        
+        $this->setActive(1);
+        
+    }
+
+    private $id;
+    
+    private $category;
+    
+    private $name;
+    
+    private $path;
+    
+    private $active;
+    
+    public function getId() {
+        return $this->id;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    public function getCategory() {
+        return $this->category;
+    }
+
+    public function setCategory($category) {
+        $this->category = $category;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    public function getPath() {
+        return $this->path;
+    }
+
+    public function setPath($path) {
+        $this->path = $path;
+    }
+
+    public function getActive() {
+        return $this->active;
+    }
+
+    public function setActive($active) {
+        $this->active = $active;
+    }
+
+    public function assocEntity() {
+        $fields = array(
+            "doc_10_id"            => $this->getId(),
+            "cat_10_id"            => $this->getCategory(),
+            "doc_30_path"          => $this->getPath(),
+            "doc_30_nome"          => $this->getName(),
+            "doc_12_active"        => $this->getActive()
+        );
+        
+        return $fields;
+    }
+
+    public function fetchEntity($row) {
+        
+        $this->setId($row['doc_10_id']);
+        $this->setCategory($row['cat_10_id']);
+        $this->setPath($row['doc_30_path']);
+        $this->setName($row['doc_30_nome']);
+        $this->setActive($row['doc_12_active']);
+        
+        return $this;
+        
+    }
+
+    public function tableName(){
+        return "doc_doc_document";
+    }
+    
+    public function primaryKey(){
+        return "doc_10_id";
+    }
+
+}
+
+?>

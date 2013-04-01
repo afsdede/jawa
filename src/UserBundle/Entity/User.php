@@ -27,7 +27,7 @@ class User implements Entity{
      */
     private $type;
     
-    private $permission;
+    private $group;
     
     private $nome;
     
@@ -55,12 +55,12 @@ class User implements Entity{
         $this->type = $type;
     }
 
-    public function getPermission() {
-        return $this->permission;
+    public function getGroup() {
+        return $this->group;
     }
 
-    public function setPermission($permission) {
-        $this->permission = $permission;
+    public function setGroup($group) {
+        $this->group = $group;
     }
 
     public function getNome() {
@@ -106,7 +106,7 @@ class User implements Entity{
     public function assocEntity() {
         $fields = array(
             "usr_10_id"            => $this->getId(),
-            "usr_10_permission"    => $this->getPermission(),
+            "usr_10_group"         => $this->getGroup(),
             "usr_12_type"          => $this->getType(),
             "usr_30_nome"          => $this->getNome(),
             "usr_30_username"      => $this->getLogin(),
@@ -121,7 +121,7 @@ class User implements Entity{
     public function fetchEntity($row) {
         
         $this->setId($row['usr_10_id']);
-        $this->setPermission($row['usr_10_permission']);
+        $this->setGroup($row['usr_10_group']);
         $this->setType($row['usr_12_type']);
         $this->setNome($row['usr_30_nome']);
         $this->setLogin($row['usr_30_username']);
