@@ -1,21 +1,21 @@
 <?php
 
-namespace UserBundle\Controller;
+namespace DocumentBundle\Controller;
 
 use KernelBundle\Controller\Controller;
 
-use UserBundle\Entity\User;
+use DocumentBundle\Entity\Categoria;
 
 /**
  * Description of UserController
  *
  * @author andre
  */
-class UserController extends Controller{
+class CategoriaController extends Controller{
     
-    public function insert(User $user){
+    public function insert(Categoria $categoria){
         
-        $this->insertAction($user);
+        $this->insertAction($categoria);
         
     }
     

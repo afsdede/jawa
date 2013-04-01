@@ -1,21 +1,21 @@
 <?php
 
-namespace UserBundle\Controller;
+namespace DocumentBundle\Controller;
 
 use KernelBundle\Controller\Controller;
 
-use UserBundle\Entity\User;
+use DocumentBundle\Entity\Document;
 
 /**
  * Description of UserController
  *
  * @author andre
  */
-class UserController extends Controller{
+class DocumentController extends Controller{
     
-    public function insert(User $user){
+    public function insert(Document $document){
         
-        $this->insertAction($user);
+        $this->insertAction($document);
         
     }
     

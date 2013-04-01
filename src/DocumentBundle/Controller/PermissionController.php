@@ -1,21 +1,21 @@
 <?php
 
-namespace UserBundle\Controller;
+namespace DocumentBundle\Controller;
 
 use KernelBundle\Controller\Controller;
 
-use UserBundle\Entity\User;
+use DocumentBundle\Entity\Permission;
 
 /**
  * Description of UserController
  *
  * @author andre
  */
-class UserController extends Controller{
+class PermissionController extends Controller{
     
-    public function insert(User $user){
+    public function insert(Permission $permission){
         
-        $this->insertAction($user);
+        $this->insertAction($permission);
         
     }
     
