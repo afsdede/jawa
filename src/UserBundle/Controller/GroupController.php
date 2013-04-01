@@ -4,18 +4,18 @@ namespace UserBundle\Controller;
 
 use KernelBundle\Controller\Controller;
 
-use UserBundle\Entity\User;
+use UserBundle\Entity\Group;
 
 /**
  * Description of UserController
  *
  * @author andre
  */
-class UserController extends Controller{
+class GroupController extends Controller{
     
-    public function insert(User $user){
+    public function insert(Group $group){
         
-        $this->insertAction($user);
+        $this->insertAction($group);
         
     }
     
