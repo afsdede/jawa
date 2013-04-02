@@ -21,8 +21,6 @@ class Teste extends KernelEngine{
 
 $a = new Teste();
 
-$usr = new User();
-
 if (is_object($usr)){
     echo "É um objeto<br />";
     
@@ -34,19 +32,11 @@ if (is_object($usr)){
     echo "Não é um objeto<br />";
 }
 
-$usr->setNome("Giovanna Godoy");
-$usr->setLogin("giovanna");
-$usr->setSenha($usr->encriptPassword("giovanna"));
-$usr->setEmail("godoy1996@hotmail.com");
-$usr->setActive(1);
+$loader = new Twig_Loader_Filesystem(APP_ROOT.DS.'view');
+$twig = new Twig_Environment($loader, array(
+    'cache' => APP_ROOT.DS.'cache'
+));
 
-echo "<pre>";
-var_dump($usr->assocEntity());
-echo "</pre>";
-
-$userController = new UserController();
-$userController->insert($usr);
-
-var_dump($a->geral());
+echo $twig->render('main.html', array('name' => 'Fabien'));
 
 ?>

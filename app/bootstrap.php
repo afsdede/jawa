@@ -11,10 +11,15 @@ if (!file_exists(APP_ROOT.DS.'KernelEngine.php')){
 }
 
 if (!file_exists(APP_ROOT.DS.'connection.php')){
-    throw new Exception(APP_ROOT.'connection.php'." - Configuration not found!");
+    throw new Exception(APP_ROOT.'connection.php'." - Connection not found!");
+}
+
+if (!file_exists(MAIN_ROOT.DS.'vendor'.DS.'autoload.php')){
+    throw new Exception(MAIN_ROOT.DS.'vendor'.DS.'autoload.php'." - Vendor autoloader not found!");
 }
 
 require_once APP_ROOT.DS.'KernelEngine.php';
 require_once APP_ROOT.DS.'connection.php';
+require_once MAIN_ROOT.DS.'vendor'.DS.'autoload.php';
 
 ?>
