@@ -19,7 +19,7 @@ if (!file_exists(MAIN_ROOT.DS.'vendor'.DS.'autoload.php')){
 }
 
 require_once APP_ROOT.DS.'KernelEngine.php';
-require_once APP_ROOT.DS.'connection.php';
+//require_once APP_ROOT.DS.'connection.php';
 require_once MAIN_ROOT.DS.'vendor'.DS.'autoload.php';
 
 ?>
