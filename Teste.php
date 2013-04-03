@@ -21,17 +21,6 @@ class Teste extends KernelEngine{
 
 $a = new Teste();
 
-if (is_object($usr)){
-    echo "É um objeto<br />";
-    
-    if ($usr instanceof Entity){
-        echo "É uma instancia também de Entity";
-    }
-    
-}else {
-    echo "Não é um objeto<br />";
-}
-
 $loader = new Twig_Loader_Filesystem(APP_ROOT.DS.'view');
 $twig = new Twig_Environment($loader, array(
     'cache' => APP_ROOT.DS.'cache'
@@ -39,4 +28,7 @@ $twig = new Twig_Environment($loader, array(
 
 echo $twig->render('main.html', array('name' => 'Fabien'));
 
+$usrController = new UserController();
+
+$usrController->loginAction();
 ?>

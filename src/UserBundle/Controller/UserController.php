@@ -5,6 +5,7 @@ namespace UserBundle\Controller;
 use KernelBundle\Controller\Controller;
 
 use UserBundle\Entity\User;
+use UserBundle\View\LoginView;
 
 /**
  * Description of UserController
@@ -16,6 +17,14 @@ class UserController extends Controller{
     public function insert(User $user){
         
         $this->insertAction($user);
+        
+    }
+    
+    public function loginAction (){
+        
+        $loginView = new LoginView();
+        
+        var_dump($loginView);
         
     }
     

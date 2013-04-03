@@ -14,7 +14,6 @@ class User implements Entity{
     function __construct(){
         
         $this->setType(1);
-        $this->setPermission(0);
         
     }
 
