@@ -24,7 +24,8 @@ class UserController extends Controller{
         
         $loginView = new LoginView();
         
-        var_dump($loginView);
+        $template = $loginView->getTemplate();
+        return $template->render('main.html', array('name' => 'Fabien'));
         
     }
     

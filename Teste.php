@@ -21,14 +21,9 @@ class Teste extends KernelEngine{
 
 $a = new Teste();
 
-$loader = new Twig_Loader_Filesystem(APP_ROOT.DS.'view');
-$twig = new Twig_Environment($loader, array(
-    'cache' => APP_ROOT.DS.'cache'
-));
 
-echo $twig->render('main.html', array('name' => 'Fabien'));
 
 $usrController = new UserController();
 
-$usrController->loginAction();
+echo $usrController->loginAction();
 ?>
