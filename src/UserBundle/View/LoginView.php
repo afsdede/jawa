@@ -14,9 +14,10 @@ class LoginView extends View{
     public function __construct($cache = "") {
         
         $this->setCache($cache);
-        $this->setLocation(realpath(__DIR__)."/src/");
+        $this->setLocation(realpath(__DIR__)."/../../../");
+        //$this->setLocation(realpath(__DIR__)."/../../../app/view/");
         
-        $this->callTemplate($this->getLocation(), $this->getLocation());
+        $this->callTemplate($this->getLocation());
         
         return $this;
         
