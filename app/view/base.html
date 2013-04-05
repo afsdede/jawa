@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %} - Jawa Assessoria Contabil</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap -->
+        <link href="app/view/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="app/view/css/style.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+        <div class="header-bar-full">
+            <div class="header-bar">
+                <div class="row-fluid">
+                    <div class="span12" data-original-title="" title="">
+                        <div class="span4" data-original-title="" title="">
+                            <p class="text-left header-info-left">
+                                Bem Vindo, {{nome}}
+                            </p>
+                        </div>
+                        <div class="span8" data-original-title="" title="">
+                            <p class="text-right header-info-right">
+                                <a href="perfil.php" class="header-info-myaccount">Minha conta</a>
+                                <a href="logout.php">Logout</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-full">
+            <div class="header"></div>
+        </div>
+        <div class="body-full">
+            <div class="body">
+                <div class="menu-left-title">Menu Principal</div>
+                <div class="menu-left">
+                </div>
+                    {% block body %}
+                    {% endblock %}
+            </div>
+        </div>
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="app/view/bootstrap/js/bootstrap.min.js"></script>
+        {% block footer %} {% endblock %}
+    </body>
+</html>

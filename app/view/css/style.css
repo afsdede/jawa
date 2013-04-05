@@ -1,0 +1,115 @@
+/* Configuração de CSS
+ * 
+ * Configuração geral da intranet
+ */
+
+body{
+    background: #ede8ea;
+}
+
+
+/* Login */
+
+#loginImage{
+    margin-top: 70px;
+}
+
+#loginImage img {
+    margin-left: 27px;
+}
+
+#loginBox{
+    background: #f4f4f4;
+    -webkit-box-shadow: 6px 4px 10px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    6px 4px 10px rgba(50, 50, 50, 0.75);
+    box-shadow:         6px 4px 10px rgba(50, 50, 50, 0.75);
+}
+
+#loginBox h3{
+    text-align: center;
+}
+
+#loginBox label,#loginBox input{
+    margin-left: 20px;
+}
+
+/* /Login */
+
+/* Header Bar */
+
+.header-bar-full{
+    background: url("../images/bg-header.jpg") repeat-x;
+    height: 50px;
+    width: 100%;
+}
+
+.header-bar{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.header-info-left{
+    color: #fff;
+    margin: 12px 0px 10px 80px;
+}
+
+.header-info-right{
+    margin: 12px 80px 10px 0px;
+}
+
+.header-info-myaccount{
+    margin-right: 65px;
+}
+
+.header-bar a {
+    color: #fff;
+}
+
+/* /Header Bar */
+
+/* Header Banner */
+
+.header-full{
+    width: 100%;
+}
+
+.header{
+    width: 1200px;
+    height: 235px;
+    margin: 0 auto;
+    background: url("../images/header.jpg") no-repeat;
+}
+
+/* /Header Banner */
+
+/* Body */
+
+.body-full{
+    width: 100%;
+}
+
+.body{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/* Menu Lateral */
+
+.menu-left{
+    border: 2px solid #d1d1d1;
+    width: 209px;
+    min-height: 100px;
+    margin-left: 30px;
+}
+
+.menu-left-title{
+    width: 213px;
+    height: 38px;
+    text-align: center;
+    color: #fff;
+    background: #353636;
+    margin: 30px 0px 0px 30px;
+}
+
+/* /Body */
+/* /Menu Lateral */

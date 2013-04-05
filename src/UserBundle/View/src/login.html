@@ -3,10 +3,15 @@
 {% block title %}Login{% endblock %}
 
 {% block body %}
-<form action="login.php" method="post">
-    <label for="user">Usuário</label><input type="text" name="user" id="user"/><br />
-    <label for="password">Senha</label><input type="password" name="password" id="password"/><br />
-    <input type="submit" value="Logar" />
-</form>
-
+<div class="span4 offset4" data-original-title="" title="" id="loginImage">
+    <img src="app/view/images/header-login.jpg" />
+</div>
+<div class="span4 offset4" data-original-title="" title="" id="loginBox">
+    <h3>Login na intranet da Jawa</h3>
+    <form action="login.php" method="post">
+        <label for="user"><b>Usuário</b></label><input type="text" name="user" id="user"/><br />
+        <label for="password"><b>Senha</b></label><input type="password" name="password" id="password"/><br />
+        <input type="submit" value="Logar" class="btn btn-primary"/>
+    </form>
+</div>
 {% endblock %}

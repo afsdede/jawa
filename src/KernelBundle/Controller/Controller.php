@@ -12,6 +12,18 @@ use KernelBundle\Model\Entity;
 class Controller{
     
     private $dataBase = "jawa";
+    
+    public function connect(){
+        $dataBase = "jawa";
+        $host = "localhost";
+        $userdb = "root";
+        $pass = "";
+
+        $conn = mysql_connect($host, $userdb, $pass);
+
+        $db_selected = mysql_select_db($dataBase, $conn);
+        
+    }
 
     public function insertAction(Entity $entity){
         
@@ -71,9 +83,20 @@ class Controller{
         
     }
     
-    public function listAction(Entity $entity, $id = ""){
+    public function listAction(Entity $entity, $id = "", $criterio = array()){
+        
+        $this->connect();
+        
         $whereQuery[] = (!$id) ? "1 = 1" : $entity->primaryKey()." = " . $id;
+        
+        if (count($criterio) > 0){
+            foreach($criterio as $kC => $vC){
+                $whereQuery[] = ($vC == "" || $kC == "") ? "1 = 1" : $kC." = '" . $vC . "'";
+            }
+        }
 
+        $whereQuery = array_unique($whereQuery);
+        
         $strQuery = "SELECT * FROM ".$entity->tableName()." WHERE ".implode(" AND ", $whereQuery);
         $result = mysql_query($strQuery);
 
@@ -83,7 +106,7 @@ class Controller{
         if (mysql_num_rows($result) > 0) {
 
             while ($row = mysql_fetch_assoc($result)) {
-                $retArr[$i] = $row;
+                $retArr[$i] = $entity->fetchEntity($row);
                 $i++;
             }
         }
