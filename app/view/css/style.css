@@ -97,6 +97,7 @@ body{
 
 .menu-left{
     border: 2px solid #d1d1d1;
+    border-top: 0px;
     width: 209px;
     min-height: 100px;
     margin-left: 30px;
@@ -104,11 +105,55 @@ body{
 
 .menu-left-title{
     width: 213px;
-    height: 38px;
+    height: 28px;
+    padding-top: 10px;
+    font-weight: 700;
     text-align: center;
     color: #fff;
     background: #353636;
     margin: 30px 0px 0px 30px;
+}
+
+.menu-item-icon-home{
+    background: url("../images/icones/home.png") no-repeat;
+    width: 24px;
+    height: 24px;
+    float: left;
+    margin: 15px 7px 0px 15px;
+}
+
+.menu-item-icon-group{
+    background: url("../images/icones/group.png") no-repeat;
+    width: 24px;
+    height: 24px;
+    float: left;
+    margin: 10px 7px 0px 15px;
+}
+
+.menu-item-icon-cliente{
+    background: url("../images/icones/cliente.png") no-repeat;
+    width: 24px;
+    height: 24px;
+    float: left;
+    margin: 10px 7px 0px 15px;
+}
+
+.menu-item-icon-docs{
+    background: url("../images/icones/documents.png") no-repeat;
+    width: 24px;
+    height: 24px;
+    float: left;
+    margin: 10px 7px 0px 15px;
+}
+
+.menu-item-desc{
+    margin-top: 16px;
+    float: left;
+}
+
+.menu-item-desc ul{
+    list-style: none;
+    margin-bottom: 0px;
 }
 
 /* /Body */
