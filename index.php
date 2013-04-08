@@ -12,7 +12,6 @@ class mainExecution extends KernelEngine {
     function __construct() {
         parent::__construct();
 
-        $user = new User();
 
         if (!isset($_SESSION['userLogin'])) {
             header('Location: login.php');

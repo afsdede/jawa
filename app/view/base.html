@@ -43,6 +43,7 @@
                             </div>
                         </div>
                         <div class="clearfix"></div>
+                        {% if user.type == 1 %}
                         <div class="menu-item">
                             <div class="menu-item-icon-group"></div>
                             <div class="menu-item-desc" style="margin-top: 12px;">
@@ -78,6 +79,7 @@
                             </div>
                         </div>
                         <div class="clearfix"></div>
+                        {% endif %}
                         <div class="menu-item">
                             <div class="menu-item-icon-cliente"></div>
                             <div class="menu-item-desc" style="margin-top: 12px;">
@@ -99,28 +101,28 @@
                                 Documentos
                                 <ul>
                                     <li>
-                                        <a href="clienteListar.php">Documentos</a>
+                                        <a href="documentoListar.php">Documentos</a>
                                     </li>
                                     <li>
                                         <ul>
                                             <li>
-                                                <a href="clienteListar.php">Listar</a>
+                                                <a href="documentoListar.php">Listar</a>
                                             </li>
                                             <li>
-                                                <a href="clienteNovo.php">Novo</a>
+                                                <a href="documentoNovo.php">Novo</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="clienteListar.php">Categorias</a>
+                                        <a href="categoriaListar.php">Categorias</a>
                                     </li>
                                     <li>
                                         <ul>
                                             <li>
-                                                <a href="clienteListar.php">Listar</a>
+                                                <a href="categoriaListar.php">Listar</a>
                                             </li>
                                             <li>
-                                                <a href="clienteNovo.php">Novo</a>
+                                                <a href="categoriaNovo.php">Novo</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -160,8 +162,35 @@
                 </div>
             </div>
         </div>
+        <div class="clearfix"></div>
+        <div class="footer-full">
+            <div class="footer">
+                <div class="row-fluid">
+                    <div class="span12" data-original-title="" title="">
+                        <div class="span2 offset2" style="margin-top: 20px;">
+                            <ul>
+                                <li><a href="#">Início</a></li>
+                                <li><a href="#">Usuários</a></li>
+                                <li><a href="#">Grupos</a></li>
+                                <li><a href="#">Clientes</a></li>
+                                <li><a href="#">Documentos</a></li>
+                                <li><a href="#">Categorias</a></li>
+                            </ul>
+                        </div>
+                        <div class="span2" style="margin-top: 20px;">
+                            <ul>
+                                <li><a href="#">Receita Federal</a></li>
+                                <li><a href="#">Previdência Social</a></li>
+                                <li><a href="#">Ministério do Trabalho</a></li>
+                                <li><a href="#">Consulta Protesto</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% block footer %} {% endblock %}
+        </div>
         <script src="http://code.jquery.com/jquery.js"></script>
         <script src="app/view/bootstrap/js/bootstrap.min.js"></script>
-        {% block footer %} {% endblock %}
     </body>
 </html>

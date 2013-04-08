@@ -3,17 +3,15 @@
 require_once realpath(__DIR__ . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'bootstrap.php');
 
 use KernelEngine\KernelEngine;
-use ClienteBundle\Entity\Cliente;
+use DocumentBundle\Entity\Document;
 use UserBundle\Entity\User;
-use ClienteBundle\Controller\ClienteController;
+use DocumentBundle\Controller\DocumentController;
 use KernelBundle\Model\Entity;
 
 class mainExecution extends KernelEngine {
 
     function __construct() {
         parent::__construct();
-
-        $user = new User();
 
         if (!isset($_SESSION['userLogin'])) {
             header('Location: login.php');
@@ -29,14 +27,14 @@ class mainExecution extends KernelEngine {
 }
 
 $a = new mainExecution();
-$cli = new Cliente();
+$doc = new Document();
 
-$cliController = new ClienteController();
+$docController = new DocumentController();
 
 if ($_GET['id'] > 0){
-    $cliList = $cliController->listAction($cli, $_GET['id']);
-    $cli->fetchEntity($cliList[1]);
+    $docList = $docController->listAction($doc, $_GET['id']);
+    $doc->fetchEntity($docList[1]);
 }
 
-echo $cliController->deletarAction($a->fixObject($_SESSION['userLogin']), $cli);
+echo $docController->deletarAction($a->fixObject($_SESSION['userLogin']), $doc);
 ?>

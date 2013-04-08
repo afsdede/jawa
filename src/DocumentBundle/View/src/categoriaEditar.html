@@ -1,25 +1,32 @@
 {% extends "/app/view/base.html" %}
 
-{% block title %}Editar Grupo - {{ group.name }}{% endblock %}
+{% block title %}Editar Categoria - {{ cat.name }}{% endblock %}
 
 {% block body %}
 <div class="span8" data-original-title="" title="">
-    <h3>Editar Grupo - {{ group.name }}</h3>
+    <h3>Editar Categoria - {{ cat.name }}</h3>
     
     <form action="" method="POST">
         <label>Nome</label>
-        <input name="name" type="text" value="{{ group.name }}"/>
+        <input name="name" type="text" value="{{ cat.name }}"/>
+        <label>Categoria</label>
+        <select name="parent">
+            <option value="0" {% if cat.parent == 0 %}selected="selected"{% endif %}>Principal</option>
+            {% for item in catList %}
+                <option value="{{ item.id }}" {% if cat.parent == item.id %}selected="selected"{% endif %}>{{ item.name }}</option>
+            {% endfor %}
+        </select>
         <p>Ativo</p>
         <label class="radio">
-            <input type="radio" {% if group.active == 1 %} checked="checked" {% endif %} value="1" id="optionsRadios1" name="active" />
+            <input type="radio" {% if cat.active == 1 %} checked="checked" {% endif %} value="1" id="optionsRadios1" name="active" />
             Sim
         </label>
         <label class="radio">
-            <input type="radio" {% if group.active == 0 %} checked="checked" {% endif %} value="0" id="optionsRadios2" name="active" />
+            <input type="radio" {% if cat.active == 0 %} checked="checked" {% endif %} value="0" id="optionsRadios2" name="active" />
             Não
         </label>
-        <input type="hidden" name="id" value="{{group.id}}" />
-        <input type="submit" value="Enviar" />
+        <input type="hidden" name="id" value="{{cat.id}}" />
+        <input type="submit" value="Enviar" class="btn btn-primary"/>
     </form>
 </div>
 {% endblock %}

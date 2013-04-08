@@ -1,14 +1,21 @@
 {% extends "/app/view/base.html" %}
 
-{% block title %}Novo Grupo{% endblock %}
+{% block title %}Nova Categoria{% endblock %}
 
 {% block body %}
 <div class="span8" data-original-title="" title="">
-    <h3>Novo Grupo</h3>
+    <h3>Nova Categoria</h3>
     
     <form action="" method="POST">
         <label>Nome</label>
         <input name="name" type="text"/>
+        <label>Categoria</label>
+        <select name="parent">
+            <option value="0">Principal</option>
+            {% for item in cat %}
+                <option value="{{ item.id }}">{{ item.name }}</option>
+            {% endfor %}
+        </select>
         <p>Ativo</p>
         <label class="radio">
             <input type="radio" checked="checked" value="1" id="optionsRadios1" name="active" />
@@ -18,7 +25,7 @@
             <input type="radio" value="2" id="optionsRadios2" name="active" />
             Não
         </label>
-        <input type="submit" value="Enviar" />
+        <input type="submit" value="Enviar" class="btn btn-primary" />
     </form>
 </div>
 {% endblock %}

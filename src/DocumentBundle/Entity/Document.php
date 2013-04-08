@@ -19,6 +19,8 @@ class Document implements Entity{
 
     private $id;
     
+    private $client;
+    
     private $category;
     
     private $name;
@@ -35,6 +37,14 @@ class Document implements Entity{
 
     public function setId($id) {
         $this->id = $id;
+    }
+    
+    public function getClient() {
+        return $this->client;
+    }
+
+    public function setClient($client) {
+        $this->client = $client;
     }
 
     public function getCategory() {
@@ -80,6 +90,7 @@ class Document implements Entity{
     public function assocEntity() {
         $fields = array(
             "doc_10_id"            => $this->getId(),
+            "cli_10_id"            => $this->getClient(),
             "cat_10_id"            => $this->getCategory(),
             "doc_30_path"          => $this->getPath(),
             "doc_30_nome"          => $this->getName(),
@@ -92,9 +103,10 @@ class Document implements Entity{
     public function fetchEntity($row) {
         
         $this->setId($row['doc_10_id']);
+        $this->setClient($row['cli_10_id']);
         $this->setCategory($row['cat_10_id']);
         $this->setPath($row['doc_30_path']);
-        $this->setName($row['doc_30_nome']);
+        $this->setName(utf8_encode($row['doc_30_nome']));
         $this->setActive($row['doc_12_active']);
         
         return $this;

@@ -36,7 +36,7 @@ class ClienteController extends Controller{
     public function listarAction(User $user, Cliente $cli) {
 
         $indexView = new ClienteView();
-        $$cliList = array();
+        $cliList = array();
 
         foreach ($this->listAction($cli) as $k => $v) {
             $cliente = new Cliente();

@@ -29,7 +29,6 @@ class mainExecution extends KernelEngine{
 
                         $usrController = new UserController();
                         $userLogin = $usrController->loginVerifyAction($user);
-
                         if($userLogin){
                             $_SESSION['userLogin'] = $userLogin;
                             header('Location: index.php');

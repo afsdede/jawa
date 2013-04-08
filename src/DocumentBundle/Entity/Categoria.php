@@ -65,8 +65,8 @@ class Categoria implements Entity{
     public function fetchEntity($row) {
         
         $this->setId($row['cat_10_id']);
-        $this->setParent($row['cat_10_parent']);
-        $this->setName($row['cat_30_nome']);
+        $this->setParent(utf8_encode($row['cat_10_parent']));
+        $this->setName(utf8_encode($row['cat_30_nome']));
         $this->setActive($row['cat_12_active']);
         
         return $this;

@@ -18,15 +18,22 @@ class Connection {
             $user = "root";
             $pass = "";
         } else {
-            $dataBase = "jawa";
-            $host = "mysql.jawa.com.br";
-            $user = "root";
-            $pass = "";
+            $dataBase = "jawa_intranet";
+            $host = "mysql.jawa.quup.com.br";
+            $user = "quupjawa";
+            $pass = "dk729bchj4w4";
         }
 
         $conn = mysql_connect($host, $user, $pass);
+        if (!$conn){
+            die("Erro trying to connect with database");
+        }
 
         $db_selected = mysql_select_db($dataBase, $conn);
+        
+        if (!$db_selected){
+            die("Error trying to select the database");
+        }
         
     }
 

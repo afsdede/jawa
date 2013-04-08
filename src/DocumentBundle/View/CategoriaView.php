@@ -1,6 +1,6 @@
 <?php
 
-namespace UserBundle\View;
+namespace DocumentBundle\View;
 
 use KernelBundle\View\View;
 
@@ -9,7 +9,7 @@ use KernelBundle\View\View;
  *
  * @author cred02
  */
-class GroupNovoView extends View{
+class CategoriaView extends View{
     
     public function __construct($cache = "") {
         

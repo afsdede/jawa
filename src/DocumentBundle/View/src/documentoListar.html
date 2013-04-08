@@ -1,16 +1,19 @@
 {% extends "/app/view/base.html" %}
 
-{% block title %}Listagem de Grupo{% endblock %}
+{% block title %}Listagem de Documentos{% endblock %}
 
 {% block body %}
 <div class="span8" data-original-title="" title="">
-    <h3>Listagem de Grupos</h3>
+    <h3>Listagem de Documentos</h3>
 
     <table class="table table-bordered">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
+                <th>Cliente</th>
+                <th>Categoria</th>
+                <th>Arquivo</th>
                 <th>Ativo</th>
                 <th>Status</th>
             </tr>
@@ -20,6 +23,10 @@
             <tr>
                 <td>{{ item.id }}</td>
                 <td>{{ item.name }}</td>
+                <td>{{ item.client }}</td>
+                <td>{{ item.category }}</td>
+                <td>
+                    <a href="{{ item.path }}"><i class="icon-download-alt"></i></a>
                 <td>
                     {% if item.active == 1 %}
                         <button class="btn btn-success" type="button">Ativo</button>
@@ -29,8 +36,8 @@
                     {% endif %}
                 </td>
                 <td>
-                    <a href="groupEditar.php?id={{ item.id }}"><i class="icon-edit"></i></a>
-                    <a href="groupDeletar.php?id={{ item.id }}"><i class="icon-trash"></i></a>
+                    <a href="documentoEditar.php?id={{ item.id }}"><i class="icon-edit"></i></a>
+                    <a href="documentoDeletar.php?id={{ item.id }}"><i class="icon-trash"></i></a>
                 </td>
             </tr>
             {% endfor %}

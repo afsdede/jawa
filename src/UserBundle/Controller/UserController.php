@@ -10,6 +10,9 @@ use UserBundle\View\UsuarioNovoView;
 use UserBundle\Controller\GroupController;
 use UserBundle\Entity\Group;
 
+use ClienteBundle\Controller\ClienteController;
+use ClienteBundle\Entity\Cliente;
+
 /**
  * Description of UserController
  *
@@ -22,7 +25,7 @@ class UserController extends Controller {
         $indexView = new UsuarioNovoView();
 
         if (isset($_POST['nome']) && isset($_POST['group']) && isset($_POST['login']) &&
-                isset($_POST['senha']) && isset($_POST['email'])) {
+                isset($_POST['senha']) && isset($_POST['email']) && $_POST['group'] != "") {
             $user->setType(2);
             $user->setGroup($_POST['group']);
             $user->setNome($_POST['nome']);
@@ -60,7 +63,7 @@ class UserController extends Controller {
 
         $indexView = new UsuarioNovoView();
         if (isset($_POST['nome']) && isset($_POST['group']) && isset($_POST['login'])
-                && isset($_POST['email'])) {
+                && isset($_POST['email']) && $_POST['group'] != "") {
             $user->setId($_POST['id']);
             $user->setType(2);
             $user->setGroup($_POST['group']);
@@ -155,17 +158,26 @@ class UserController extends Controller {
     public function indexAction(User $user) {
 
         $indexView = new IndexView();
+        
+        $cliController = new ClienteController();
+        $cli = new Cliente();
+        
+        $cliList = $cliController->listAction($cli);
+        foreach($cliList as $k => $v){
+            $cli = new Cliente();
+            $cliList[] = $cli->fetchEntity($v);
+        }
 
         $template = $indexView->getTemplate();
-        return $template->render('/src/UserBundle/View/src/index.html', array('nome' => $user->getNome()));
+        return $template->render('/src/UserBundle/View/src/index.html', array('nome' => $user->getNome(), 'user' => $user, 'cliList' => $cliList));
     }
 
     public function loginVerifyAction(User $user) {
 
         $retUser = $this->listAction($user, "", $user->assocEntity());
 
-        if ($retUser[1] == $user) {
-            return $retUser[1];
+        if ($user->fetchEntity($retUser[1]) instanceof User) {
+            return $user;
         } else {
             return false;
         }

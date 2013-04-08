@@ -3,9 +3,12 @@
 require_once realpath(__DIR__ . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'bootstrap.php');
 
 use KernelEngine\KernelEngine;
-use ClienteBundle\Entity\Cliente;
-use ClienteBundle\Controller\ClienteController;
 use KernelBundle\Model\Entity;
+
+use DocumentBundle\Entity\Categoria;
+use DocumentBundle\Entity\Document;
+use DocumentBundle\Controller\CategoriaController;
+use DocumentBundle\Controller\DocumentController;
 
 class mainExecution extends KernelEngine {
 
@@ -26,8 +29,8 @@ class mainExecution extends KernelEngine {
 }
 
 $a = new mainExecution();
-$cli = new Cliente();
+$doc = new Document();
 
-$cliController = new ClienteController();
-echo $cliController->novoAction($a->fixObject($_SESSION['userLogin']), $cli);
+$docController = new DocumentController();
+echo $docController->novoAction($a->fixObject($_SESSION['userLogin']), $doc);
 ?>

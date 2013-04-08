@@ -181,3 +181,19 @@ body{
 }
 
 /* /Body */
+
+/* Footer */
+
+.footer-full{
+    margin-top: 40px;
+    background: #353636;
+    width: 100%;
+    min-height: 130px;
+}
+
+.footer{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/* /Footer */
