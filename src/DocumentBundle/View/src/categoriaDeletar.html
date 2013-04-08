@@ -1,0 +1,18 @@
+{% extends "/app/view/base.html" %}
+
+{% block title %}Deletar Grupo - {{ group.name }}{% endblock %}
+
+{% block body %}
+<div class="span8" data-original-title="" title="">
+    <h3>Deletar Grupo - {{ group.name }}</h3>
+    
+    <p>
+        Deseja deletar o grupo <b>{{ group.name }}</b>?
+    </p>
+    <form action="" method="POST">
+        <input type="hidden" name="id" value="{{group.id}}" />
+        <input type="submit" value="Enviar" class="btn btn-primary" />
+        <a href="groupListar.php" class="btn">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "/app/view/base.html" %}
+
+{% block title %}Listagem de Grupo{% endblock %}
+
+{% block body %}
+<div class="span8" data-original-title="" title="">
+    <h3>Listagem de Grupos</h3>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Ativo</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in list %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>
+                    {% if item.active == 1 %}
+                        <button class="btn btn-success" type="button">Ativo</button>
+                    {% endif %}
+                    {% if item.active == 0 %}
+                        <button class="btn btn-danger" type="button">Inativo</button>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="groupEditar.php?id={{ item.id }}"><i class="icon-edit"></i></a>
+                    <a href="groupDeletar.php?id={{ item.id }}"><i class="icon-trash"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
