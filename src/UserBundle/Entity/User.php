@@ -120,9 +120,9 @@ class User implements Entity{
     public function fetchEntity($row) {
         
         $this->setId($row['usr_10_id']);
-        $this->setGroup($row['usr_10_group']);
+        $this->setGroup(utf8_encode($row['usr_10_group']));
         $this->setType($row['usr_12_type']);
-        $this->setNome($row['usr_30_nome']);
+        $this->setNome(utf8_encode($row['usr_30_nome']));
         $this->setLogin($row['usr_30_username']);
         $this->setSenha($row['usr_30_password']);
         $this->setEmail($row['usr_30_email']);

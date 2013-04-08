@@ -1,8 +1,26 @@
 {% extends "/app/view/base.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Novo Grupo{% endblock %}
 
 {% block body %}
-<div class="span12" data-original-title="" title="">
+<div class="span8" data-original-title="" title="">
+    <h3>Novo Cliente</h3>
+    
+    <form action="" method="POST">
+        <label>Nome</label>
+        <input name="name" type="text"/>
+        <label>Descrição</label>
+        <textarea rows="3" name="desc"></textarea>
+        <p>Ativo</p>
+        <label class="radio">
+            <input type="radio" checked="checked" value="1" id="optionsRadios1" name="active" />
+            Sim
+        </label>
+        <label class="radio">
+            <input type="radio" value="2" id="optionsRadios2" name="active" />
+            Não
+        </label>
+        <input type="submit" value="Enviar" />
+    </form>
 </div>
 {% endblock %}

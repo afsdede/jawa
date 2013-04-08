@@ -1,8 +1,18 @@
 {% extends "/app/view/base.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Deletar Usuário - {{ user.nome }}{% endblock %}
 
 {% block body %}
-<div class="span12" data-original-title="" title="">
+<div class="span8" data-original-title="" title="">
+    <h3>Deletar Usuário - {{ user.nome }}</h3>
+    
+    <p>
+        Deseja deletar o usuário <b>{{ user.nome }}</b>?
+    </p>
+    <form action="" method="POST">
+        <input type="hidden" name="id" value="{{user.id}}" />
+        <input type="submit" value="Enviar" class="btn btn-primary" />
+        <a href="groupListar.php" class="btn">Cancelar</a>
+    </form>
 </div>
 {% endblock %}

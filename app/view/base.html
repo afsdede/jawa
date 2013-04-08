@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8" />
         <title>{% block title %}{% endblock %} - Jawa Assessoria Contabil</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Bootstrap -->
@@ -32,103 +33,131 @@
         </div>
         <div class="body-full">
             <div class="body">
-                <div class="menu-left-title">Menu Principal</div>
-                <div class="menu-left">
-                    <div class="menu-item">
-                        <div class="menu-item-icon-home"></div>
-                        <div class="menu-item-desc">
-                            <a href="index.php">Início</a>
+                <div class="menu-left-geral">
+                    <div class="menu-left-title">Menu Principal</div>
+                    <div class="menu-left">
+                        <div class="menu-item">
+                            <div class="menu-item-icon-home"></div>
+                            <div class="menu-item-desc">
+                                <a href="index.php">Início</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="menu-item">
-                        <div class="menu-item-icon-group"></div>
-                        <div class="menu-item-desc" style="margin-top: 12px;">
-                            Usuários
-                            <ul>
-                                <li>
-                                    <a href="usuarioListar.php">Usuários</a>
-                                </li>
-                                <li>
-                                    <ul>
-                                        <li>
-                                            <a href="usuarioListar.php">Listar</a>
-                                        </li>
-                                        <li>
-                                            <a href="usuarioNovo.php">Novo</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="groupListar.php">Grupos</a>
-                                </li>
-                                <li>
-                                    <ul>
-                                        <li>
-                                            <a href="groupListar.php">Listar</a>
-                                        </li>
-                                        <li>
-                                            <a href="groupNovo.php">Novo</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
+                        <div class="clearfix"></div>
+                        <div class="menu-item">
+                            <div class="menu-item-icon-group"></div>
+                            <div class="menu-item-desc" style="margin-top: 12px;">
+                                Usuários
+                                <ul>
+                                    <li>
+                                        <a href="usuarioListar.php">Usuários</a>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li>
+                                                <a href="usuarioListar.php">Listar</a>
+                                            </li>
+                                            <li>
+                                                <a href="usuarioNovo.php">Novo</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="groupListar.php">Grupos</a>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li>
+                                                <a href="groupListar.php">Listar</a>
+                                            </li>
+                                            <li>
+                                                <a href="groupNovo.php">Novo</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="menu-item">
-                        <div class="menu-item-icon-cliente"></div>
-                        <div class="menu-item-desc" style="margin-top: 12px;">
-                            <a href="index.php">Clientes</a>
-                            <ul>
-                                <li>
-                                    <a href="clienteListar.php">Listar</a>
-                                </li>
-                                <li>
-                                    <a href="clienteNovo.php">Novo</a>
-                                </li>
-                            </ul>
+                        <div class="clearfix"></div>
+                        <div class="menu-item">
+                            <div class="menu-item-icon-cliente"></div>
+                            <div class="menu-item-desc" style="margin-top: 12px;">
+                                <a href="clienteListar.php">Clientes</a>
+                                <ul>
+                                    <li>
+                                        <a href="clienteListar.php">Listar</a>
+                                    </li>
+                                    <li>
+                                        <a href="clienteNovo.php">Novo</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="menu-item">
-                        <div class="menu-item-icon-docs"></div>
-                        <div class="menu-item-desc" style="margin-top: 12px;">
-                            Documentos
-                            <ul>
-                                <li>
-                                    <a href="clienteListar.php">Documentos</a>
-                                </li>
-                                <li>
-                                    <ul>
-                                        <li>
-                                            <a href="clienteListar.php">Listar</a>
-                                        </li>
-                                        <li>
-                                            <a href="clienteNovo.php">Novo</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="clienteListar.php">Categorias</a>
-                                </li>
-                                <li>
-                                    <ul>
-                                        <li>
-                                            <a href="clienteListar.php">Listar</a>
-                                        </li>
-                                        <li>
-                                            <a href="clienteNovo.php">Novo</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
+                        <div class="clearfix"></div>
+                        <div class="menu-item">
+                            <div class="menu-item-icon-docs"></div>
+                            <div class="menu-item-desc" style="margin-top: 12px;">
+                                Documentos
+                                <ul>
+                                    <li>
+                                        <a href="clienteListar.php">Documentos</a>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li>
+                                                <a href="clienteListar.php">Listar</a>
+                                            </li>
+                                            <li>
+                                                <a href="clienteNovo.php">Novo</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="clienteListar.php">Categorias</a>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li>
+                                                <a href="clienteListar.php">Listar</a>
+                                            </li>
+                                            <li>
+                                                <a href="clienteNovo.php">Novo</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
+                        <div class="clearfix"></div>
                     </div>
                     <div class="clearfix"></div>
                 </div>
+                <div class="content-geral">
                     {% block body %}
                     {% endblock %}
+                </div>
+                <div class="menu-right-geral">
+                    <div class="menu-right-title">
+                        Acesso Rápido
+                    </div>
+                    <div class="menu-right">
+                        <ul>
+                            <li>
+                                <a href="http://www.receita.fazenda.gov.br/">Receita Federal</a>
+                            </li>
+                            <li>
+                                <a href="http://www.mpas.gov.br/">Previdência Social</a>
+                            </li>
+                            <li>
+                                <a href="http://www.mtb.gov.br/">Ministério do Trabalho</a>
+                            </li>
+                            <li>
+                                <a href="http://www.protesto.com.br/">Consulta Protesto</a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
             </div>
         </div>
         <script src="http://code.jquery.com/jquery.js"></script>

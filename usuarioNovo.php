@@ -3,6 +3,7 @@
 require_once realpath(__DIR__ . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'bootstrap.php');
 
 use KernelEngine\KernelEngine;
+use UserBundle\Entity\Group;
 use UserBundle\Entity\User;
 use UserBundle\Controller\UserController;
 use KernelBundle\Model\Entity;
@@ -11,8 +12,6 @@ class mainExecution extends KernelEngine {
 
     function __construct() {
         parent::__construct();
-
-        $user = new User();
 
         if (!isset($_SESSION['userLogin'])) {
             header('Location: login.php');
@@ -28,7 +27,8 @@ class mainExecution extends KernelEngine {
 }
 
 $a = new mainExecution();
+$user = new User();
 
 $usrController = new UserController();
-echo $usrController->indexAction($a->fixObject($_SESSION['userLogin']));
+echo $usrController->novoAction($a->fixObject($_SESSION['userLogin']), $user);
 ?>

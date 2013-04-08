@@ -1,8 +1,37 @@
 {% extends "/app/view/base.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Novo Usuário{% endblock %}
 
 {% block body %}
-<div class="span12" data-original-title="" title="">
+<div class="span8" data-original-title="" title="">
+    <h3>Novo Usuário</h3>
+    
+    <form action="" method="POST">
+        <label>Nome</label>
+        <input name="nome" value="{{ user.nome }}" type="text"/>
+        <label>Grupo</label>
+        <select name="group">
+            {% for item in group %}
+            <option value="{{ item.id }}" {% if user.group == item.id %}selected="selected"{% endif %}>{{ item.name }}</option>
+            {% endfor %}
+        </select>
+        <label>E-mail</label>
+        <input name="email" type="text" value="{{ user.email }}"/>
+        <label>Login</label>
+        <input name="login" type="text" value="{{ user.login }}"/>
+        <label>Senha</label>
+        <input name="senha" type="password"/>
+        <p>Ativo</p>
+        <label class="radio">
+            <input type="radio" {% if user.active == 1 %} checked="checked" {% endif %} value="1" id="optionsRadios1" name="active" />
+            Sim
+        </label>
+        <label class="radio">
+            <input type="radio" {% if user.active == 0 %} checked="checked" {% endif %} value="0" id="optionsRadios2" name="active" />
+            Não
+        </label>
+        <input type="hidden" name="id" value="{{ user.id }}" />
+        <input type="submit" value="Enviar" />
+    </form>
 </div>
 {% endblock %}

@@ -12,8 +12,6 @@ class mainExecution extends KernelEngine {
     function __construct() {
         parent::__construct();
 
-        $user = new User();
-
         if (!isset($_SESSION['userLogin'])) {
             header('Location: login.php');
         }
@@ -28,7 +26,8 @@ class mainExecution extends KernelEngine {
 }
 
 $a = new mainExecution();
+$user = new User();
 
 $usrController = new UserController();
-echo $usrController->indexAction($a->fixObject($_SESSION['userLogin']));
+echo $usrController->listarAction($a->fixObject($_SESSION['userLogin']), $user);
 ?>

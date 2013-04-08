@@ -70,9 +70,9 @@ class Cliente implements Entity{
 
     public function fetchEntity($row) {
         
-        $this->setId($row['usr_10_id']);
+        $this->setId($row['cli_10_id']);
         $this->setName($row['cli_30_nome']);
-        $this->setDesc($row['cli_35_email']);
+        $this->setDesc($row['cli_35_desc']);
         $this->setActive($row['cli_12_active']);
         
         return $this;

@@ -3,6 +3,7 @@
 namespace KernelBundle\Controller;
 
 use KernelBundle\Model\Entity;
+use KernelBundle\Model\Connection;
 
 /**
  * Controller para controlar as ações principais do sistema
@@ -13,18 +14,13 @@ class Controller{
     
     private $dataBase = "jawa";
     
-    public function connect(){
-        $dataBase = "jawa";
-        $host = "localhost";
-        $userdb = "root";
-        $pass = "";
-
-        $conn = mysql_connect($host, $userdb, $pass);
-
-        $db_selected = mysql_select_db($dataBase, $conn);
+    public function __construct(){
+        
+        $con = new Connection();
+        $con->connect();
         
     }
-
+    
     public function insertAction(Entity $entity){
         
         $entity->assocEntity();
@@ -35,8 +31,9 @@ class Controller{
         $values = implode("', '", $entityAr);
 
         $strQuery = "INSERT INTO `".$this->dataBase."`.`" . $entity->tableName() . "` (`" . $fields . "`) VALUES('" . $values . "');";
-        echo $strQuery;
 
+        mysql_query("SET NAMES 'utf8'");
+        
         mysql_query($strQuery);
 
         return true;
@@ -59,6 +56,7 @@ class Controller{
             $setQuery = implode($setQuery, ", ");
 
             $sqlQuery = "UPDATE `".$this->dataBase."`.`".$entity->tableName()."` SET $setQuery WHERE `".$entity->primaryKey()."` = ". $entity->getId();
+            mysql_query("SET NAMES 'utf8'");
             mysql_query($sqlQuery);
 
             return true;
@@ -73,7 +71,7 @@ class Controller{
         
         if ($entity->getId() != "") {
             
-            $sqlQuery = "DELETE FROM `".$entity->tableName()."`.`".$entity->tableName()."` WHERE `".$entity->primaryKey()."` = ". $entity->getId();
+            $sqlQuery = "DELETE FROM `".$this->dataBase."`.`".$entity->tableName()."` WHERE `".$entity->primaryKey()."` = ". $entity->getId();
             mysql_query($sqlQuery);
             
             return true;
@@ -84,8 +82,6 @@ class Controller{
     }
     
     public function listAction(Entity $entity, $id = "", $criterio = array()){
-        
-        $this->connect();
         
         $whereQuery[] = (!$id) ? "1 = 1" : $entity->primaryKey()." = " . $id;
         
@@ -106,7 +102,7 @@ class Controller{
         if (mysql_num_rows($result) > 0) {
 
             while ($row = mysql_fetch_assoc($result)) {
-                $retArr[$i] = $entity->fetchEntity($row);
+                $retArr[$i] = $row;
                 $i++;
             }
         }

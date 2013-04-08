@@ -61,7 +61,7 @@ class Group implements Entity{
     public function fetchEntity($row) {
         
         $this->setId($row['grp_10_id']);
-        $this->setName($row['grp_30_nome']);
+        $this->setName(utf8_encode($row['grp_30_nome']));
         $this->setActive($row['grp_12_active']);
         
         return $this;

@@ -1,8 +1,25 @@
 {% extends "/app/view/base.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Editar Grupo - {{ group.name }}{% endblock %}
 
 {% block body %}
-<div class="span12" data-original-title="" title="">
+<div class="span8" data-original-title="" title="">
+    <h3>Editar Grupo - {{ group.name }}</h3>
+    
+    <form action="" method="POST">
+        <label>Nome</label>
+        <input name="name" type="text" value="{{ group.name }}"/>
+        <p>Ativo</p>
+        <label class="radio">
+            <input type="radio" {% if group.active == 1 %} checked="checked" {% endif %} value="1" id="optionsRadios1" name="active" />
+            Sim
+        </label>
+        <label class="radio">
+            <input type="radio" {% if group.active == 0 %} checked="checked" {% endif %} value="0" id="optionsRadios2" name="active" />
+            Não
+        </label>
+        <input type="hidden" name="id" value="{{group.id}}" />
+        <input type="submit" value="Enviar" />
+    </form>
 </div>
 {% endblock %}

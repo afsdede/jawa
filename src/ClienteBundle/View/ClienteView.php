@@ -1,6 +1,6 @@
 <?php
 
-namespace UserBundle\View;
+namespace ClienteBundle\View;
 
 use KernelBundle\View\View;
 
@@ -9,7 +9,7 @@ use KernelBundle\View\View;
  *
  * @author cred02
  */
-class IndexView extends View{
+class ClienteView extends View{
     
     public function __construct($cache = "") {
         

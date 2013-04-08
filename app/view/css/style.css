@@ -95,7 +95,12 @@ body{
 
 /* Menu Lateral */
 
-.menu-left{
+.menu-left-geral, .menu-right-geral{
+    float: left;
+}
+
+.menu-left, .menu-right{
+    background: #fff;
     border: 2px solid #d1d1d1;
     border-top: 0px;
     width: 209px;
@@ -103,7 +108,16 @@ body{
     margin-left: 30px;
 }
 
-.menu-left-title{
+.menu-right ul{
+    padding-top: 15px;
+}
+
+.menu-right ul li{
+    line-height: 30px;
+    list-style: circle;
+}
+
+.menu-left-title, .menu-right-title{
     width: 213px;
     height: 28px;
     padding-top: 10px;
@@ -156,5 +170,14 @@ body{
     margin-bottom: 0px;
 }
 
-/* /Body */
 /* /Menu Lateral */
+
+.content-geral{
+    float: left;
+    width: 650px;
+    min-height: 100px;
+    background: #fff;
+    margin: 30px 0 0 30px;
+}
+
+/* /Body */

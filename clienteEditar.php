@@ -3,8 +3,9 @@
 require_once realpath(__DIR__ . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'bootstrap.php');
 
 use KernelEngine\KernelEngine;
+use ClienteBundle\Entity\Cliente;
 use UserBundle\Entity\User;
-use UserBundle\Controller\UserController;
+use ClienteBundle\Controller\ClienteController;
 use KernelBundle\Model\Entity;
 
 class mainExecution extends KernelEngine {
@@ -24,11 +25,18 @@ class mainExecution extends KernelEngine {
             return ($object = unserialize(serialize($object)));
         return $object;
     }
-
+    
 }
 
 $a = new mainExecution();
+$cli = new Cliente();
 
-$usrController = new UserController();
-echo $usrController->indexAction($a->fixObject($_SESSION['userLogin']));
+$cliController = new ClienteController();
+
+if ($_GET['id'] > 0){
+    $cliList = $cliController->listAction($cli, $_GET['id']);
+    $cli->fetchEntity($cliList[1]);
+}
+
+echo $cliController->editarAction($a->fixObject($_SESSION['userLogin']), $cli);
 ?>

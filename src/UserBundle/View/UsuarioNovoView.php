@@ -9,7 +9,7 @@ use KernelBundle\View\View;
  *
  * @author cred02
  */
-class IndexView extends View{
+class UsuarioNovoView extends View{
     
     public function __construct($cache = "") {
         

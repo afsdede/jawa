@@ -1,8 +1,44 @@
 {% extends "/app/view/base.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Listagem de Grupo{% endblock %}
 
 {% block body %}
-<div class="span12" data-original-title="" title="">
+<div class="span8" data-original-title="" title="">
+    <h3>Listagem de Grupos</h3>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Grupo</th>
+                <th>Email</th>
+                <th>Ativo</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in list %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.nome }}</td>
+                <td>{{ item.group }}</td>
+                <td>{{ item.email }}</td>
+                <td>
+                    {% if item.active == 1 %}
+                        <button class="btn btn-success" type="button">Ativo</button>
+                    {% endif %}
+                    {% if item.active == 0 %}
+                        <button class="btn btn-danger" type="button">Inativo</button>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="usuarioEditar.php?id={{ item.id }}"><i class="icon-edit"></i></a>
+                    <a href="usuarioDeletar.php?id={{ item.id }}"><i class="icon-trash"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}
