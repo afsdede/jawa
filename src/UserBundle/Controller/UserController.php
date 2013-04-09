@@ -10,6 +10,9 @@ use UserBundle\View\UsuarioNovoView;
 use UserBundle\Controller\GroupController;
 use UserBundle\Entity\Group;
 
+use DocumentBundle\Controller\DocumentController;
+use \DocumentBundle\Entity\Document;
+
 use ClienteBundle\Controller\ClienteController;
 use ClienteBundle\Entity\Cliente;
 
@@ -23,7 +26,7 @@ class UserController extends Controller {
     public function novoAction(User $userOn, User $user) {
 
         $indexView = new UsuarioNovoView();
-
+        
         if (isset($_POST['nome']) && isset($_POST['group']) && isset($_POST['login']) &&
                 isset($_POST['senha']) && isset($_POST['email']) && $_POST['group'] != "") {
             $user->setType(2);
@@ -167,9 +170,73 @@ class UserController extends Controller {
             $cli = new Cliente();
             $cliList[] = $cli->fetchEntity($v);
         }
+        
+        $doc = new Document();
+        $docController = new DocumentController();
+        $criterio = array(
+            'doc_12_active' => 1
+        );
+        
+        $listDoc = $docController->listAction($doc,"",$criterio,"DISTINCT cli_10_id");
+        $listCli = array();
+        foreach($listDoc as $kDoc => $vDoc){
+            $listCli[] = $vDoc['cli_10_id'];
+        }
+        
+        $critCli = array(
+            'cli_10_id' => array(
+                'operator' => 'IN (',
+                'val'      => implode(",", $listCli).')'
+            )
+        );
+        
+        $cli = new Cliente();
+        $cliController = new ClienteController();
+        $cliList = $cliController->listAction($cli, "", $critCli);
+        $cliRet = array();
+        foreach($cliList as $kCli => $vCli){
+            $cliObj = new Cliente();
+            $cliObj->fetchEntity($vCli);
+            $cliRet[] = $cliObj;
+        }
 
         $template = $indexView->getTemplate();
-        return $template->render('/src/UserBundle/View/src/index.html', array('nome' => $user->getNome(), 'user' => $user, 'cliList' => $cliList));
+        return $template->render('/src/UserBundle/View/src/index.html', array('nome' => $user->getNome(), 'user' => $user, 'cliList' => $cliRet));
+    }
+
+    public function indexClienteAction(User $user) {
+
+        $indexView = new IndexView();
+        
+        $cliController = new ClienteController();
+        $cli = new Cliente();
+        
+        $cliList = $cliController->listAction($cli, $_GET['cliId']);
+        foreach($cliList as $k => $v){
+            $cli = new Cliente();
+            $cli->fetchEntity($v);
+        }
+        
+        $doc = new Document();
+        $docController = new DocumentController();
+        $criterio = array(
+            'doc_12_active' => 1,
+            'cli_10_id' => $_GET['cliId']
+        );
+        
+        $listDoc = $docController->listAction($doc,"",$criterio);
+        $retDoc = array();
+        foreach($listDoc as $kDoc => $vDoc){
+            $docNew = new Document();
+            $docNew->fetchEntity($vDoc);
+            $fileSize = (filesize($docNew->getPath()))/1024;
+            $fileSize = number_format($fileSize,1);
+            $docNew->setFileSize($fileSize);
+            $retDoc[] = $docNew;
+        }
+
+        $template = $indexView->getTemplate();
+        return $template->render('/src/UserBundle/View/src/indexCliente.html', array('nome' => $user->getNome(), 'user' => $user, 'docList' => $retDoc, 'cli' => $cli));
     }
 
     public function loginVerifyAction(User $user) {

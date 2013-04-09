@@ -1,0 +1,42 @@
+{% extends "/app/view/base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block body %}
+<div class="span8" data-original-title="" title="">
+    <h3>Cliente {{ cli.name }}</h3>
+    
+    <div class="row">
+        <div class="span8">
+            <p>
+                <b>Cliente:</b>
+                {{ cli.name }}
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span8">
+            <p>
+                <b>Descrição:</b>
+                {{ cli.desc }}
+            </p>
+        </div>
+    </div>
+    <div style="margin-top: 30px;">
+        <h4>Documentos</h4>
+        {% for item in docList %}
+            <div class="row">
+                <div class="span6">
+                    <p>{{ item.name }}</p>
+                </div>
+                <div class="span1">
+                    <a href="{{ item.path }}"><i class="icon-download-alt"></i></a>
+                </div>
+                <div class="span1">
+                    {{ item.fileSize }} KB
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

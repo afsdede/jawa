@@ -27,6 +27,8 @@ class Document implements Entity{
     
     private $path;
     
+    private $fileSize;
+    
     private $archive;
     
     private $active;
@@ -71,6 +73,14 @@ class Document implements Entity{
         $this->path = $path;
     }
     
+    public function getFileSize() {
+        return $this->fileSize;
+    }
+
+    public function setFileSize($fileSize) {
+        $this->fileSize = $fileSize;
+    }
+
     public function getArchive() {
         return $this->archive;
     }

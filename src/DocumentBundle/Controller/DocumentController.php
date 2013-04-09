@@ -22,6 +22,12 @@ class DocumentController extends Controller {
     public function novoAction(User $user, Document $doc) {
 
         $indexView = new DocumentView();
+        
+        echo "<pre>";
+        var_dump($_POST);
+        var_dump($_FILES);
+        echo "</pre>";
+        //exit();
 
         if (isset($_POST['name']) && $_POST['name'] != "" &&
                 isset($_POST['client']) && $_POST['client'] != "") {
@@ -38,7 +44,7 @@ class DocumentController extends Controller {
 
             $doc->setPath($path);
             $this->insertAction($doc);
-
+            
             header('Location: documentoListar.php');
         } else {
 
@@ -103,7 +109,7 @@ class DocumentController extends Controller {
             $doc->setClient($_POST['client']);
             $doc->setCategory($_POST['category']);
             $doc->setActive($_POST['active']);
-            if (isset($_FILES['archive'])) {
+            if ($_FILES['archive']["name"] != "") {
                 $doc->setArchive($_FILES['archive']);
                 $upload = new Upload("app/upload/" . $doc->getClient() . "/", $doc->getArchive(), "");
                 $path = $upload->upload();

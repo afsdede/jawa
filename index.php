@@ -29,5 +29,18 @@ class mainExecution extends KernelEngine {
 $a = new mainExecution();
 
 $usrController = new UserController();
-echo $usrController->indexAction($a->fixObject($_SESSION['userLogin']));
+
+if (!isset($_GET)){
+
+    echo $usrController->indexAction($a->fixObject($_SESSION['userLogin']));
+
+}else {
+    
+    if (isset($_GET['cliId'])){
+        
+        echo $usrController->indexClienteAction($a->fixObject($_SESSION['userLogin']));
+        
+    }
+    
+}
 ?>

@@ -81,19 +81,23 @@ class Controller{
         
     }
     
-    public function listAction(Entity $entity, $id = "", $criterio = array()){
+    public function listAction(Entity $entity, $id = "", $criterio = array(), $sel = "*"){
         
         $whereQuery[] = (!$id) ? "1 = 1" : $entity->primaryKey()." = " . $id;
         
         if (count($criterio) > 0){
             foreach($criterio as $kC => $vC){
-                $whereQuery[] = ($vC == "" || $kC == "") ? "1 = 1" : $kC." = '" . $vC . "'";
+                if (is_array($vC)){
+                    $whereQuery[] = ($vC == "" || $kC == "") ? "1 = 1" : $kC." ".$vC['operator'] . $vC['val'] ;
+                }else {
+                    $whereQuery[] = ($vC == "" || $kC == "") ? "1 = 1" : $kC." = '" . $vC . "'";
+                }
             }
         }
 
         $whereQuery = array_unique($whereQuery);
         
-        $strQuery = "SELECT * FROM ".$entity->tableName()." WHERE ".implode(" AND ", $whereQuery);
+        $strQuery = "SELECT ".$sel." FROM ".$entity->tableName()." WHERE ".implode(" AND ", $whereQuery);
         $result = mysql_query($strQuery);
 
         $retArr = array();
