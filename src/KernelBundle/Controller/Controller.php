@@ -103,11 +103,13 @@ class Controller{
         $retArr = array();
         $i = 1;
 
-        if (mysql_num_rows($result) > 0) {
+        if (is_resource($result)){
+            if (mysql_num_rows($result) > 0) {
 
-            while ($row = mysql_fetch_assoc($result)) {
-                $retArr[$i] = $row;
-                $i++;
+                while ($row = mysql_fetch_assoc($result)) {
+                    $retArr[$i] = $row;
+                    $i++;
+                }
             }
         }
 
