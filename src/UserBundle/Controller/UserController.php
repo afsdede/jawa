@@ -55,7 +55,7 @@ class UserController extends Controller {
             }
 
             $template = $indexView->getTemplate();
-            return $template->render('/src/UserBundle/View/src/usuarioNovo.html', array('nome' => $user->getNome(), 'group' => $groupList));
+            return $template->render('/src/UserBundle/View/src/usuarioNovo.html', array('nome' => $userOn->getNome(), 'user' => $userOn, 'group' => $groupList));
         }
     }
 
@@ -101,7 +101,7 @@ class UserController extends Controller {
                 }
 
                 $template = $indexView->getTemplate();
-                return $template->render('/src/UserBundle/View/src/usuarioEditar.html', array('nome' => $user->getNome(), 'user' => $user,'group' => $groupList));
+                return $template->render('/src/UserBundle/View/src/usuarioEditar.html', array('nome' => $userOn->getNome(), 'user' => $userOn, 'usr' => $user,'group' => $groupList));
             }
         }
     }
@@ -120,7 +120,7 @@ class UserController extends Controller {
                 header('Location: usuarioListar.php');
             } else {
                 $template = $indexView->getTemplate();
-                return $template->render('/src/UserBundle/View/src/usuarioDeletar.html', array('nome' => $user->getNome(), "user" => $user));
+                return $template->render('/src/UserBundle/View/src/usuarioDeletar.html', array('nome' => $userOn->getNome(), 'user' => $userOn, "usr" => $user));
             }
         }
     }
@@ -144,7 +144,7 @@ class UserController extends Controller {
         }
 
         $template = $indexView->getTemplate();
-        return $template->render('/src/UserBundle/View/src/usuarioListar.html', array('nome' => $user->getNome(), 'list' => $userList));
+        return $template->render('/src/UserBundle/View/src/usuarioListar.html', array('nome' => $userOn->getNome(), 'user' => $userOn, 'list' => $userList));
     }
 
     public function loginAction() {

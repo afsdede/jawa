@@ -57,7 +57,7 @@ class DocumentController extends Controller {
             }
 
             $template = $indexView->getTemplate();
-            return $template->render('/src/DocumentBundle/View/src/documentoNovo.html', array('nome' => $user->getNome(), 'cat' => $catList, 'cli' => $cliList));
+            return $template->render('/src/DocumentBundle/View/src/documentoNovo.html', array('nome' => $user->getNome(), 'user' => $user, 'cat' => $catList, 'cli' => $cliList));
         }
     }
 
@@ -89,7 +89,7 @@ class DocumentController extends Controller {
         }
 
         $template = $indexView->getTemplate();
-        return $template->render('/src/DocumentBundle/View/src/documentoListar.html', array('nome' => $user->getNome(), 'list' => $docList));
+        return $template->render('/src/DocumentBundle/View/src/documentoListar.html', array('nome' => $user->getNome(), 'user' => $user, 'list' => $docList));
     }
 
     public function editarAction(User $user, Document $doc) {
@@ -136,7 +136,7 @@ class DocumentController extends Controller {
                 }
 
                 $template = $indexView->getTemplate();
-                return $template->render('/src/DocumentBundle/View/src/documentoEditar.html', array('nome' => $user->getNome(), 'doc' => $doc, 'cat' => $catList, 'cli' => $cliList));
+                return $template->render('/src/DocumentBundle/View/src/documentoEditar.html', array('nome' => $user->getNome(), 'user' => $user, 'doc' => $doc, 'cat' => $catList, 'cli' => $cliList));
                 
             }
         }
@@ -159,7 +159,7 @@ class DocumentController extends Controller {
                 header('Location: documentoListar.php');
             } else {
                 $template = $indexView->getTemplate();
-                return $template->render('/src/DocumentBundle/View/src/documentoDeletar.html', array('nome' => $user->getNome(), "doc" => $doc));
+                return $template->render('/src/DocumentBundle/View/src/documentoDeletar.html', array('nome' => $user->getNome(), 'user' => $user, "doc" => $doc));
             }
         }
     }

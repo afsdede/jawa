@@ -29,7 +29,7 @@ class ClienteController extends Controller{
         } else {
 
             $template = $indexView->getTemplate();
-            return $template->render('/src/ClienteBundle/View/src/clienteNovo.html', array('nome' => $user->getNome()));
+            return $template->render('/src/ClienteBundle/View/src/clienteNovo.html', array('nome' => $user->getNome(), 'user' => $user));
         }
     }
     
@@ -44,7 +44,7 @@ class ClienteController extends Controller{
         }
 
         $template = $indexView->getTemplate();
-        return $template->render('/src/ClienteBundle/View/src/clienteListar.html', array('nome' => $user->getNome(), 'list' => $cliList));
+        return $template->render('/src/ClienteBundle/View/src/clienteListar.html', array('nome' => $user->getNome(), 'user' => $user, 'list' => $cliList));
     }
     
     public function editarAction(User $user, Cliente $cli) {
@@ -64,7 +64,7 @@ class ClienteController extends Controller{
                 header('Location: clienteListar.php');
             } else {
                 $template = $indexView->getTemplate();
-                return $template->render('/src/ClienteBundle/View/src/clienteEditar.html', array('nome' => $user->getNome(), "cli" => $cli));
+                return $template->render('/src/ClienteBundle/View/src/clienteEditar.html', array('nome' => $user->getNome(), 'user' => $user, "cli" => $cli));
             }
         }
     }
@@ -83,7 +83,7 @@ class ClienteController extends Controller{
                 header('Location: groupListar.php');
             } else {
                 $template = $indexView->getTemplate();
-                return $template->render('/src/ClienteBundle/View/src/clienteDeletar.html', array('nome' => $user->getNome(), "cli" => $cli));
+                return $template->render('/src/ClienteBundle/View/src/clienteDeletar.html', array('nome' => $user->getNome(), 'user' => $user, "cli" => $cli));
             }
         }
     }

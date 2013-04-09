@@ -36,7 +36,7 @@ class CategoriaController extends Controller{
             }
 
             $template = $indexView->getTemplate();
-            return $template->render('/src/DocumentBundle/View/src/categoriaNovo.html', array('nome' => $user->getNome(), 'cat' => $catList));
+            return $template->render('/src/DocumentBundle/View/src/categoriaNovo.html', array('nome' => $user->getNome(), 'user' => $user, 'cat' => $catList));
         }
     }
     
@@ -59,7 +59,7 @@ class CategoriaController extends Controller{
         }
 
         $template = $indexView->getTemplate();
-        return $template->render('/src/DocumentBundle/View/src/categoriaListar.html', array('nome' => $user->getNome(), 'list' => $catList));
+        return $template->render('/src/DocumentBundle/View/src/categoriaListar.html', array('nome' => $user->getNome(), 'user' => $user, 'list' => $catList));
     }
     
     public function editarAction(User $user, Categoria $cat) {
@@ -87,7 +87,7 @@ class CategoriaController extends Controller{
                 }
                 
                 $template = $indexView->getTemplate();
-                return $template->render('/src/DocumentBundle/View/src/categoriaEditar.html', array('nome' => $user->getNome(), "cat" => $cat, 'catList' => $catList));
+                return $template->render('/src/DocumentBundle/View/src/categoriaEditar.html', array('nome' => $user->getNome(), 'user' => $user, "cat" => $cat, 'catList' => $catList));
             }
         }
     }
@@ -106,7 +106,7 @@ class CategoriaController extends Controller{
                 header('Location: categoriaListar.php');
             } else {
                 $template = $indexView->getTemplate();
-                return $template->render('/src/DocumentBundle/View/src/categoriaDeletar.html', array('nome' => $user->getNome(), "cat" => $cat));
+                return $template->render('/src/DocumentBundle/View/src/categoriaDeletar.html', array('nome' => $user->getNome(), 'user' => $user, "cat" => $cat));
             }
         }
     }
