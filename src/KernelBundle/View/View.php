@@ -5,7 +5,7 @@ namespace KernelBundle\View;
 /**
  * Classe para manipulaçao do View
  *
- * @author cred02
+ * @author afsdede
  */
 class View {
     
