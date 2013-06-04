@@ -23,12 +23,6 @@ class DocumentController extends Controller {
 
         $indexView = new DocumentView();
         
-        echo "<pre>";
-        var_dump($_POST);
-        var_dump($_FILES);
-        echo "</pre>";
-        //exit();
-
         if (isset($_POST['name']) && $_POST['name'] != "" &&
                 isset($_POST['client']) && $_POST['client'] != "") {
 

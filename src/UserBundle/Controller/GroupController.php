@@ -26,7 +26,7 @@ class GroupController extends Controller {
         } else {
 
             $template = $indexView->getTemplate();
-            return $template->render('/src/UserBundle/View/src/groupNovo.html', array('nome' => $user->getNome()));
+            return $template->render('/src/UserBundle/View/src/groupNovo.html', array('user' => $user, 'nome' => $user->getNome()));
         }
     }
 
@@ -46,7 +46,7 @@ class GroupController extends Controller {
                 header('Location: groupListar.php');
             } else {
                 $template = $indexView->getTemplate();
-                return $template->render('/src/UserBundle/View/src/groupEditar.html', array('nome' => $user->getNome(), "group" => $group));
+                return $template->render('/src/UserBundle/View/src/groupEditar.html', array('nome' => $user->getNome(), 'user' => $user, "group" => $group));
             }
         }
     }
@@ -65,7 +65,7 @@ class GroupController extends Controller {
                 header('Location: groupListar.php');
             } else {
                 $template = $indexView->getTemplate();
-                return $template->render('/src/UserBundle/View/src/groupDeletar.html', array('nome' => $user->getNome(), "group" => $group));
+                return $template->render('/src/UserBundle/View/src/groupDeletar.html', array('nome' => $user->getNome(), 'user' => $user, "group" => $group));
             }
         }
     }
@@ -81,7 +81,7 @@ class GroupController extends Controller {
         }
 
         $template = $indexView->getTemplate();
-        return $template->render('/src/UserBundle/View/src/groupListar.html', array('nome' => $user->getNome(), 'list' => $groupList));
+        return $template->render('/src/UserBundle/View/src/groupListar.html', array('nome' => $user->getNome(), 'user' => $user, 'list' => $groupList));
     }
 
 }

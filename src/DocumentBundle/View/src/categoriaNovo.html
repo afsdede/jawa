@@ -6,7 +6,7 @@
 <div class="span8" data-original-title="" title="">
     <h3>Nova Categoria</h3>
     
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         <label>Nome</label>
         <input name="name" type="text"/>
         <label>Categoria</label>
@@ -16,6 +16,8 @@
                 <option value="{{ item.id }}">{{ item.name }}</option>
             {% endfor %}
         </select>
+        <label>Imagem</label>
+        <input type="file" name="image" class="input "/>
         <p>Ativo</p>
         <label class="radio">
             <input type="radio" checked="checked" value="1" id="optionsRadios1" name="active" />
