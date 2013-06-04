@@ -14,10 +14,6 @@ body{
     margin-top: 70px;
 }
 
-#loginImage img {
-    margin-left: 27px;
-}
-
 #loginBox{
     background: #f4f4f4;
     -webkit-box-shadow: 6px 4px 10px rgba(50, 50, 50, 0.75);
