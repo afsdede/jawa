@@ -19,6 +19,8 @@ class Categoria implements Entity{
     
     private $image;
     
+    private $file;
+    
     private $active;
     
     public function getId() {
@@ -51,6 +53,14 @@ class Categoria implements Entity{
 
     public function setImage($image) {
         $this->image = $image;
+    }
+    
+    public function getFile() {
+        return $this->file;
+    }
+
+    public function setFile($file) {
+        $this->file = $file;
     }
 
     public function getActive() {
@@ -91,6 +101,10 @@ class Categoria implements Entity{
     
     public function primaryKey(){
         return "cat_10_id";
+    }
+    
+    public function getUploadRootDir(){
+        return MAIN_ROOT."/app/upload/categoria/";
     }
 
 }

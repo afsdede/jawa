@@ -3,9 +3,8 @@
 namespace DocumentBundle\Controller;
 
 use KernelBundle\Controller\Controller;
-
+use KernelBundle\Util\SimpleImage;
 use UserBundle\Entity\User;
-
 use DocumentBundle\Entity\Categoria;
 use DocumentBundle\View\CategoriaView;
 
@@ -14,17 +13,21 @@ use DocumentBundle\View\CategoriaView;
  *
  * @author andre
  */
-class CategoriaController extends Controller{
-    
+class CategoriaController extends Controller {
+
     public function novoAction(User $user, Categoria $cat) {
 
         $indexView = new CategoriaView();
-        
+
         if (isset($_POST['name']) && $_POST['name'] != "") {
             $cat->setName($_POST['name']);
             $cat->setParent($_POST['parent']);
             $cat->setActive($_POST['active']);
+            $cat->setFile($_FILES['image']);
+            
+            $this->uploadImageAction($cat);
             $this->insertAction($cat);
+            
             header('Location: categoriaListar.php');
         } else {
 
@@ -39,7 +42,7 @@ class CategoriaController extends Controller{
             return $template->render('/src/DocumentBundle/View/src/categoriaNovo.html', array('nome' => $user->getNome(), 'user' => $user, 'cat' => $catList));
         }
     }
-    
+
     public function listarAction(User $user, Categoria $cat) {
 
         $indexView = new CategoriaView();
@@ -49,10 +52,10 @@ class CategoriaController extends Controller{
         foreach ($this->listAction($cat) as $k => $v) {
             $categoria = new Categoria();
             $categoria->fetchEntity($v);
-            if ($categoria->getParent() != 0){
+            if ($categoria->getParent() != 0) {
                 $catNome = $catController->listAction($cat, $categoria->getParent());
                 $categoria->setParent(utf8_encode($catNome[1]['cat_30_nome']));
-            }else {
+            } else {
                 $categoria->setParent("Principal");
             }
             $catList[] = $categoria;
@@ -61,7 +64,7 @@ class CategoriaController extends Controller{
         $template = $indexView->getTemplate();
         return $template->render('/src/DocumentBundle/View/src/categoriaListar.html', array('nome' => $user->getNome(), 'user' => $user, 'list' => $catList));
     }
-    
+
     public function editarAction(User $user, Categoria $cat) {
 
         $indexView = new CategoriaView();
@@ -78,20 +81,20 @@ class CategoriaController extends Controller{
             if (!$cat->getId()) {
                 header('Location: categoriaListar.php');
             } else {
-                
+
                 $catList = array();
                 $categoria = new Categoria();
                 foreach ($this->listAction($categoria) as $k => $v) {
                     $categoria = new Categoria();
                     $catList[] = $categoria->fetchEntity($v);
                 }
-                
+
                 $template = $indexView->getTemplate();
                 return $template->render('/src/DocumentBundle/View/src/categoriaEditar.html', array('nome' => $user->getNome(), 'user' => $user, "cat" => $cat, 'catList' => $catList));
             }
         }
     }
-    
+
     public function deletarAction(User $user, Categoria $cat) {
 
         $indexView = new CategoriaView();
@@ -110,7 +113,27 @@ class CategoriaController extends Controller{
             }
         }
     }
-    
+
+    public function uploadImageAction(Categoria $categoria) {
+
+        $imgEdit = new SimpleImage();
+
+        if ($categoria->getImage() != "") {
+            unlink($categoria->getImage());
+        }
+
+        $imageFile = $categoria->getFile();
+
+        $categoria->setImage(uniqid() . "-" . $imageFile["name"]);
+        move_uploaded_file($imageFile['tmp_name'], $categoria->getUploadRootDir() . $categoria->getImage());
+
+        $imgEdit->load($categoria->getUploadRootDir() . $categoria->getImage());
+        $imgEdit->adjustImage(200, 200);
+        $imgEdit->save($categoria->getUploadRootDir() . $categoria->getImage());
+        
+        return true;
+    }
+
 }
 
 ?>
