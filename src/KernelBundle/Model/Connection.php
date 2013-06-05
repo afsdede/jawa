@@ -11,12 +11,11 @@ class Connection {
 
     public function connect() {
 
-
-        if ($_SERVER['SERVER_ADDR'] == "127.0.0.1") {
+        if ($_SERVER['SERVER_ADDR'] == "127.0.0.1" || "::1") {
             $dataBase = "jawa";
             $host = "localhost";
             $user = "root";
-            $pass = "";
+            $pass = "root";
         } else {
             $dataBase = "jawa_intranet";
             $host = "mysql.jawa.quup.com.br";

@@ -7,6 +7,9 @@ use UserBundle\Entity\User;
 use UserBundle\Controller\UserController;
 use KernelBundle\Model\Entity;
 
+use DocumentBundle\Controller\CategoriaController;
+use DocumentBundle\Entity\Categoria;
+
 class mainExecution extends KernelEngine {
 
     function __construct() {
@@ -28,6 +31,13 @@ class mainExecution extends KernelEngine {
 
 $a = new mainExecution();
 $usrController = new UserController();
+$catController = new CategoriaController();
+$category = new Categoria();
+
+$catList = $catController->listAction($category);
+echo "<pre>";
+var_dump($catList);
+echo "</pre>";
 
 if (!isset($_GET) || count($_GET) == 0){
 
