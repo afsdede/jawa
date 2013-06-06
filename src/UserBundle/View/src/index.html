@@ -4,27 +4,25 @@
 
 {% block body %}
 <div class="span8" data-original-title="" title="">
-    <h3>Listagem de usuários</h3>
-    
-    {% for item in cliList %}
-        <div class="row">
-            <div class="span3">
-                <a href="?cliId={{ item.id }}">
-                    <img src="" class="img-rounded" />
-                </a>
+    <h3>Categorias</h3>
+    <div class="row">
+    {% for key,item in catList %}
+        {% if key != 0 and (key)%3 == 0 %}
             </div>
+            <div class="row">
+                nova linha
+        {% endif %}
             <div class="span2">
-                <p>
-                    <a href="?cliId={{ item.id }}">{{ item.name }}</a>
-                </p>
-            </div>
-            <div class="span3">
-                <a href="?cliId={{ item.id }}">
-                    {{ item.desc }}
+                <a href="lista-documentos-categoria?={{ item.id }}">
+                    <img src="{{item.getWebImage}}" class="img-rounded" />
                 </a>
+                <div class="span2">
+                    <p>
+                        <a href="lista-documentos-categoria?={{ item.id }}">{{ item.name }}</a>
+                    </p>
+                </div>
             </div>
-        </div>
     {% endfor %}
-    
+    </div>
 </div>
 {% endblock %}

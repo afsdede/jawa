@@ -74,6 +74,9 @@ class CategoriaController extends Controller {
             $cat->setName($_POST['name']);
             $cat->setParent($_POST['parent']);
             $cat->setActive($_POST['active']);
+            $cat->setFile($_FILES['image']);
+            
+            $this->uploadImageAction($cat);
             $this->editAction($cat);
             header('Location: categoriaListar.php');
         } else {
@@ -119,12 +122,14 @@ class CategoriaController extends Controller {
         $imgEdit = new SimpleImage();
 
         if ($categoria->getImage() != "") {
-            unlink($categoria->getImage());
+            if (is_file($categoria->getUploadRootDir() . $categoria->getImage())){
+                unlink($categoria->getUploadRootDir() . $categoria->getImage());
+            }
         }
 
         $imageFile = $categoria->getFile();
 
-        $categoria->setImage(uniqid() . "-" . $imageFile["name"]);
+        $categoria->setImage(uniqid() . "-" . str_replace(" ", "-", $imageFile["name"]));
         move_uploaded_file($imageFile['tmp_name'], $categoria->getUploadRootDir() . $categoria->getImage());
 
         $imgEdit->load($categoria->getUploadRootDir() . $categoria->getImage());

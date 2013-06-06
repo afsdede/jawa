@@ -7,6 +7,9 @@ use UserBundle\Entity\User;
 use UserBundle\Controller\UserController;
 use KernelBundle\Model\Entity;
 
+use DocumentBundle\Controller\CategoriaController;
+use DocumentBundle\Entity\Categoria;
+
 class mainExecution extends KernelEngine {
 
     function __construct() {
@@ -29,17 +32,5 @@ class mainExecution extends KernelEngine {
 $a = new mainExecution();
 $usrController = new UserController();
 
-if (!isset($_GET) || count($_GET) == 0){
-
-    echo $usrController->indexAction($a->fixObject($_SESSION['userLogin']));
-
-}else {
-    
-    if (isset($_GET['cliId'])){
-        
-        echo $usrController->indexClienteAction($a->fixObject($_SESSION['userLogin']));
-        
-    }
-    
-}
+echo $usrController->indexAction($a->fixObject($_SESSION['userLogin']));
 ?>

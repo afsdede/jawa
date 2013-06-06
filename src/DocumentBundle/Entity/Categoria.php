@@ -106,6 +106,15 @@ class Categoria implements Entity{
     public function getUploadRootDir(){
         return MAIN_ROOT."/app/upload/categoria/";
     }
+    
+    public function getWebImage(){
+        
+        if (is_file($this->getUploadRootDir(). $this->getImage())){
+            return "app/upload/categoria/". $this->getImage();
+        }else {
+            return "app/upload/images/no-photo.png";
+        }
+    }
 
 }
 
