@@ -39,17 +39,9 @@ echo "<pre>";
 var_dump($catList);
 echo "</pre>";
 
-if (!isset($_GET) || count($_GET) == 0){
-
-    echo $usrController->indexAction($a->fixObject($_SESSION['userLogin']));
-
+if (isset($_GET['catId'])){
+    echo $usrController->indexAction($a->fixObject($_SESSION['userLogin']), $_GET['catId']);
 }else {
-    
-    if (isset($_GET['cliId'])){
-        
-        echo $usrController->indexClienteAction($a->fixObject($_SESSION['userLogin']));
-        
-    }
-    
+    echo $usrController->indexAction($a->fixObject($_SESSION['userLogin']));
 }
 ?>

@@ -11,7 +11,9 @@ use UserBundle\Controller\GroupController;
 use UserBundle\Entity\Group;
 
 use DocumentBundle\Controller\DocumentController;
-use \DocumentBundle\Entity\Document;
+use DocumentBundle\Entity\Document;
+use DocumentBundle\Controller\CategoriaController;
+use DocumentBundle\Entity\Categoria;
 
 use ClienteBundle\Controller\ClienteController;
 use ClienteBundle\Entity\Cliente;
@@ -158,50 +160,34 @@ class UserController extends Controller {
         return $template->render('/src/UserBundle/View/src/login.html', array());
     }
 
-    public function indexAction(User $user) {
+    public function indexAction(User $user, $id = "") {
 
         $indexView = new IndexView();
         
-        $cliController = new ClienteController();
-        $cli = new Cliente();
-        
-        $cliList = $cliController->listAction($cli);
-        foreach($cliList as $k => $v){
-            $cli = new Cliente();
-            $cliList[] = $cli->fetchEntity($v);
-        }
-        
-        $doc = new Document();
-        $docController = new DocumentController();
-        $criterio = array(
-            'doc_12_active' => 1
-        );
-        
-        $listDoc = $docController->listAction($doc,"",$criterio,"DISTINCT cli_10_id");
-        $listCli = array();
-        foreach($listDoc as $kDoc => $vDoc){
-            $listCli[] = $vDoc['cli_10_id'];
-        }
-        
-        $critCli = array(
-            'cli_10_id' => array(
-                'operator' => 'IN (',
-                'val'      => implode(",", $listCli).')'
-            )
-        );
-        
-        $cli = new Cliente();
-        $cliController = new ClienteController();
-        $cliList = $cliController->listAction($cli, "", $critCli);
-        $cliRet = array();
-        foreach($cliList as $kCli => $vCli){
-            $cliObj = new Cliente();
-            $cliObj->fetchEntity($vCli);
-            $cliRet[] = $cliObj;
-        }
+        $catController = new CategoriaController();
+        $cat = new Categoria();
 
+        if ($id){
+            $crit = array(
+                'cat_10_parent' => $id
+            );
+        }else {
+            $crit = array(
+                'cat_10_parent' => '0'
+            );
+        }
+        $catList = $catController->listAction($cat,"",$crit);
+        $catRet = array();
+
+        foreach($catList as $k => $v){
+            $newCat = new Categoria();
+            $newCat->fetchEntity($v);
+            $catRet[] = $newCat;
+
+        }
+        
         $template = $indexView->getTemplate();
-        return $template->render('/src/UserBundle/View/src/index.html', array('nome' => $user->getNome(), 'user' => $user, 'cliList' => $cliRet));
+        return $template->render('/src/UserBundle/View/src/index.html', array('nome' => $user->getNome(), 'user' => $user, 'catList' => $catRet));
     }
 
     public function indexClienteAction(User $user) {
@@ -249,7 +235,7 @@ class UserController extends Controller {
             return false;
         }
     }
-
+    
 }
 
 ?>

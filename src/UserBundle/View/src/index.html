@@ -4,27 +4,40 @@
 
 {% block body %}
 <div class="span8" data-original-title="" title="">
-    <h3>Listagem de usuários</h3>
-    
-    {% for item in cliList %}
-        <div class="row">
-            <div class="span3">
-                <a href="?cliId={{ item.id }}">
-                    <img src="" class="img-rounded" />
-                </a>
+    <h3>Categorias</h3>
+    <div class="row">
+    {% for key,item in catList %}
+        {% if key != 0 and (key)%3 == 0 %}
             </div>
+            <div class="row">
+                nova linha
+        {% endif %}
             <div class="span2">
-                <p>
-                    <a href="?cliId={{ item.id }}">{{ item.name }}</a>
-                </p>
+                {% if item.hasChild(item.id)%}
+                <div style="border: 1px solid #ccc; border-radius: 5px; min-height: 170px;">
+                    <div style="height: 120px; position: relative; line-height: 120px;">
+                        <a href="?catId={{ item.id }}">
+                            <img src="{{item.getWebImage}}" class="img-rounded" style="vertical-align: middle;"/>
+                        </a>
+                    </div>
+                    <p style="text-align: center; padding-top: 5px;">
+                        <a href="?catId={{ item.id }}">{{ item.name }}</a>
+                    </p>
+                </div>
+                {% else %}
+                <div style="border: 1px solid #ccc; border-radius: 5px; min-height: 170px;">
+                    <div style="height: 120px; position: relative; line-height: 120px;">
+                        <a href="lista-documentos-categoria.php?={{ item.id }}">
+                            <img src="{{item.getWebImage}}" class="img-rounded" style="vertical-align: middle;"/>
+                        </a>
+                    </div>
+                    <p style="text-align: center; padding-top: 5px;">
+                        <a href="lista-documentos-categoria.php?={{ item.id }}">{{ item.name }}</a>
+                    </p>
+                </div>
+                {% endif %}
             </div>
-            <div class="span3">
-                <a href="?cliId={{ item.id }}">
-                    {{ item.desc }}
-                </a>
-            </div>
-        </div>
     {% endfor %}
-    
+    </div>
 </div>
 {% endblock %}

@@ -74,7 +74,6 @@ class CategoriaController extends Controller {
             $cat->setName($_POST['name']);
             $cat->setParent($_POST['parent']);
             $cat->setActive($_POST['active']);
-            var_dump($_FILES);
             $cat->setFile($_FILES['image']);
             
             $this->uploadImageAction($cat);
@@ -123,8 +122,8 @@ class CategoriaController extends Controller {
         $imgEdit = new SimpleImage();
 
         if ($categoria->getImage() != "") {
-            if (is_file($categoria->getUploadRootDir().$categoria->getImage())){
-                unlink($categoria->getUploadRootDir().$categoria->getImage());
+            if (is_file($categoria->getUploadRootDir() . $categoria->getImage())){
+                unlink($categoria->getUploadRootDir() . $categoria->getImage());
             }
         }
 

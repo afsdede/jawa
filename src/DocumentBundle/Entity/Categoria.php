@@ -3,6 +3,7 @@
 namespace DocumentBundle\Entity;
 
 use KernelBundle\Model\Entity;
+use DocumentBundle\Controller\CategoriaController;
 
 /**
  * Class that maps the client
@@ -105,6 +106,30 @@ class Categoria implements Entity{
     
     public function getUploadRootDir(){
         return MAIN_ROOT."/app/upload/categoria/";
+    }
+    
+    public function getWebImage(){
+        
+        if (is_file($this->getUploadRootDir(). $this->getImage())){
+            return "app/upload/categoria/". $this->getImage();
+        }else {
+            return "app/upload/images/no-photo.png";
+        }
+    }
+    
+    public function hasChild($id){
+        $catController = new CategoriaController();
+        
+        $crit = array(
+            'cat_10_parent' => $id
+        );
+        $catList = $catController->listAction($this,"",$crit);
+        
+        if (count($catList) > 0){
+            return true;
+        }else {
+            return false;
+        }
     }
 
 }
