@@ -160,14 +160,23 @@ class UserController extends Controller {
         return $template->render('/src/UserBundle/View/src/login.html', array());
     }
 
-    public function indexAction(User $user) {
+    public function indexAction(User $user, $id = "") {
 
         $indexView = new IndexView();
         
         $catController = new CategoriaController();
         $cat = new Categoria();
 
-        $catList = $catController->listAction($cat);
+        if ($id){
+            $crit = array(
+                'cat_10_parent' => $id
+            );
+        }else {
+            $crit = array(
+                'cat_10_parent' => '0'
+            );
+        }
+        $catList = $catController->listAction($cat,"",$crit);
         $catRet = array();
 
         foreach($catList as $k => $v){
@@ -226,7 +235,7 @@ class UserController extends Controller {
             return false;
         }
     }
-
+    
 }
 
 ?>

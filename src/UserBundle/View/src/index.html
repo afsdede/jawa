@@ -13,14 +13,29 @@
                 nova linha
         {% endif %}
             <div class="span2">
-                <a href="lista-documentos-categoria?={{ item.id }}">
-                    <img src="{{item.getWebImage}}" class="img-rounded" />
-                </a>
-                <div class="span2">
-                    <p>
-                        <a href="lista-documentos-categoria?={{ item.id }}">{{ item.name }}</a>
+                {% if item.hasChild(item.id)%}
+                <div style="border: 1px solid #ccc; border-radius: 5px; min-height: 170px;">
+                    <div style="height: 120px; position: relative; line-height: 120px;">
+                        <a href="?catId={{ item.id }}">
+                            <img src="{{item.getWebImage}}" class="img-rounded" style="vertical-align: middle;"/>
+                        </a>
+                    </div>
+                    <p style="text-align: center; padding-top: 5px;">
+                        <a href="?catId={{ item.id }}">{{ item.name }}</a>
                     </p>
                 </div>
+                {% else %}
+                <div style="border: 1px solid #ccc; border-radius: 5px; min-height: 170px;">
+                    <div style="height: 120px; position: relative; line-height: 120px;">
+                        <a href="lista-documentos-categoria.php?={{ item.id }}">
+                            <img src="{{item.getWebImage}}" class="img-rounded" style="vertical-align: middle;"/>
+                        </a>
+                    </div>
+                    <p style="text-align: center; padding-top: 5px;">
+                        <a href="lista-documentos-categoria.php?={{ item.id }}">{{ item.name }}</a>
+                    </p>
+                </div>
+                {% endif %}
             </div>
     {% endfor %}
     </div>
