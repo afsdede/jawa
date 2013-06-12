@@ -31,6 +31,8 @@ class Document implements Entity{
     
     private $archive;
     
+    private $date;
+    
     private $active;
     
     public function getId() {
@@ -96,6 +98,14 @@ class Document implements Entity{
     public function setActive($active) {
         $this->active = $active;
     }
+    
+    public function getDate() {
+        return $this->date;
+    }
+
+    public function setDate($date) {
+        $this->date = $date;
+    }
 
     public function assocEntity() {
         $fields = array(
@@ -104,6 +114,7 @@ class Document implements Entity{
             "cat_10_id"            => $this->getCategory(),
             "doc_30_path"          => $this->getPath(),
             "doc_30_nome"          => $this->getName(),
+            "doc_10_data"          => $this->getDate(),
             "doc_12_active"        => $this->getActive()
         );
         
@@ -117,6 +128,7 @@ class Document implements Entity{
         $this->setCategory($row['cat_10_id']);
         $this->setPath($row['doc_30_path']);
         $this->setName(utf8_encode($row['doc_30_nome']));
+        $this->setDate($row['doc_10_data']);
         $this->setActive($row['doc_12_active']);
         
         return $this;

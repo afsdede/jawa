@@ -1,7 +1,15 @@
 {% extends "/app/view/base.html" %}
 
 {% block title %}Editar Documento - {{ doc.name }}{% endblock %}
-
+{% block javascript %}
+$(document).ready(function(){
+    $( "#datepicker" ).datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: "dd/mm/yy"
+    });
+});
+{% endblock %}
 {% block body %}
 <div class="span8" data-original-title="" title="">
     <h3>Editar Documento - {{ doc.name }}</h3>
@@ -24,6 +32,8 @@
         </select>
         <label>Arquivo</label>
         <input type="file" name="archive" class="input "/>
+        <label>Data</label>
+        <input name="date" id="datepicker" type="text" value="{{doc.date}}"/>
         <p>Ativo</p>
         <label class="radio">
             <input type="radio" {% if doc.active == 1 %} checked="checked" {% endif %} value="1" id="optionsRadios1" name="active" />

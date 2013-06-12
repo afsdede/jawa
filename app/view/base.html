@@ -4,9 +4,16 @@
         <meta charset="utf-8" />
         <title>{% block title %}{% endblock %} - Jawa Assessoria Contabil</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script src="app/view/bootstrap/js/bootstrap.min.js"></script>
         <!-- Bootstrap -->
         <link href="app/view/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="app/view/css/style.css" rel="stylesheet" media="screen">
+        <script type="text/javascript">
+        {% block javascript %}{% endblock %}
+        </script>
     </head>
     <body>
         <div class="header-bar-full">
@@ -190,7 +197,5 @@
             </div>
             {% block footer %} {% endblock %}
         </div>
-        <script src="http://code.jquery.com/jquery.js"></script>
-        <script src="app/view/bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>

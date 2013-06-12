@@ -24,12 +24,16 @@ class DocumentController extends Controller {
         $indexView = new DocumentView();
         
         if (isset($_POST['name']) && $_POST['name'] != "" &&
-                isset($_POST['client']) && $_POST['client'] != "") {
+                isset($_POST['client']) && $_POST['client'] != "" &&
+                isset($_POST['date']) && $_POST['date'] != "") {
 
             $doc->setName($_POST['name']);
             $doc->setClient($_POST['client']);
             $doc->setCategory($_POST['category']);
             $doc->setActive($_POST['active']);
+            $expTime = explode("/", $_POST['date']);
+            $timeDoc = mktime(0, 0, 1, $expTime[1], $expTime[0], $expTime[2]);
+            $doc->setDate($timeDoc);
             $doc->setArchive($_FILES['archive']);
 
 
@@ -135,6 +139,7 @@ class DocumentController extends Controller {
                     $cliList[] = $cliente->fetchEntity($v);
                 }
 
+                $doc->setDate(date("d/m/Y",$doc->getDate()));
                 $template = $indexView->getTemplate();
                 return $template->render('/src/DocumentBundle/View/src/documentoEditar.html', array('nome' => $user->getNome(), 'user' => $user, 'doc' => $doc, 'cat' => $catList, 'cli' => $cliList));
                 
