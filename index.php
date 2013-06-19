@@ -35,9 +35,6 @@ $catController = new CategoriaController();
 $category = new Categoria();
 
 $catList = $catController->listAction($category);
-echo "<pre>";
-var_dump($catList);
-echo "</pre>";
 
 if (isset($_GET['catId'])){
     echo $usrController->indexAction($a->fixObject($_SESSION['userLogin']), $_GET['catId']);

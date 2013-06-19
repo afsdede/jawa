@@ -7,7 +7,6 @@ body{
     background: #ede8ea;
 }
 
-
 /* Login */
 
 #loginImage{
@@ -174,6 +173,7 @@ body{
     min-height: 100px;
     background: #fff;
     margin: 30px 0 0 30px;
+    padding-bottom: 15px;
 }
 
 /* /Body */
