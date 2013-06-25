@@ -1,0 +1,18 @@
+{% extends "/app/view/base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block body %}
+<div class="span8" data-original-title="" title="">
+    {% if listCli %}
+        <h3>Clientes - em {{ docYear }}</h3>
+        <div class="row">
+            <ul>
+            {% for key,item in listCli %}
+            <li><a href="listar-documentos-cliente.php?catId={{ catId }}&ano={{ docYear }}&cliId={{item.id}}">{{ item.name }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
