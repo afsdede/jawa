@@ -15,7 +15,7 @@ class Connection {
             $dataBase = "jawa";
             $host = "localhost";
             $user = "root";
-            $pass = "";
+            $pass = "root";
         } else {
             $dataBase = "jawa_intranet";
             $host = "mysql.jawa.quup.com.br";

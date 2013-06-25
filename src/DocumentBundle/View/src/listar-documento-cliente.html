@@ -4,33 +4,29 @@
 
 {% block body %}
 <div class="span8" data-original-title="" title="">
-    {% if listCli %}
-        {% if catAtual.name %}
+    {% if catAtual.name %}
         <ul class="breadcrumb">
             <li><a href="index.php">Início</a> <span class="divider">/</span></li>
             <li><a href="index.php?catId={{ catAtual.id }}">{{ catAtual.name }}</a> <span class="divider">/</span></li>
-            <li class="active">{{ docYear }}</li>
+            <li><a href="listar-documentos-categoria-ano.php?catId={{ catAtual.id }}&ano={{ docYear }}">{{ docYear }}</a> <span class="divider">/</span></li>
+            <li class="active">{{ cliAtual.name }}</li>
         </ul>
         {% else %}
         <ul class="breadcrumb">
             <li><a href="index.php">Início</a> <span class="divider">/</span></li>
             <li><a href="index.php?catId={{ catAtual.id }}">Principal</a> <span class="divider">/</span></li>
-            <li class="active">{{ docYear }}</li>
+            <li><a href="listar-documentos-categoria-ano.php?catId={{ catAtual.id }}&ano={{ docYear }}">{{ docYear }}</a> <span class="divider">/</span></li>
+            <li class="active">{{ cliAtual.name }}</li>
         </ul>
         {% endif %}
-        <h3>Clientes - {{ docYear }}</h3>
+    <h3>Documentos - {{ cliAtual.name }}</h3>
+    {% if listDoc %}
         <div class="row">
-            {% for key,item in listCli %}
-            {% if key != 0 and (key)%3 == 0 %}
-                </div>
-                <div class="row">
-            {% endif %}
-                <div class="span2">
-                    <div style="border: 1px solid #ccc; border-radius: 5px; min-height: 40px; padding-top: 80px; text-align: center;">
-                        <a href="listar-documentos-cliente.php?catId={{ catId }}&ano={{ docYear }}&cliId={{item.id}}">{{ item.name }}</a>
-                    </div>
-                </div>
+            <ul>
+            {% for key,item in listDoc %}
+            <li><a href="{{ item.path }}">{{ item.name }}</a></li>
             {% endfor %}
+            </ul>
         </div>
     {% endif %}
 </div>

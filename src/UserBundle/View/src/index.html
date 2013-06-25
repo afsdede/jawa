@@ -4,13 +4,23 @@
 
 {% block body %}
 <div class="span8" data-original-title="" title="">
-    <h3>Categorias</h3>
+    {% if catAtual.name %}
+    <ul class="breadcrumb">
+        <li><a href="index.php">Início</a> <span class="divider">/</span></li>
+        <li class="active">Categoria - {{ catAtual.name }}</li>
+    </ul>
+    <h3>Categoria - {{ catAtual.name }}</h3>
+    {% else %}
+    <ul class="breadcrumb">
+        <li class="active">Início</li>
+    </ul>
+    <h3>Categoria Principal</h3>
+    {% endif %}
     <div class="row">
     {% for key,item in catList %}
         {% if key != 0 and (key)%3 == 0 %}
             </div>
             <div class="row">
-                nova linha
         {% endif %}
             <div class="span2">
                 {% if item.hasChild(item.id)%}
@@ -44,7 +54,7 @@
         <div class="row">
             <ul>
             {% for key,item in docYear %}
-            <li><a href="listar-documentos-categoria-ano.php?catId={{ catId }}&ano={{ item }}">{{ item }}</a></li>
+            <li><a href="listar-documentos-categoria-ano.php?catId={{ catAtual.id }}&ano={{ item }}">{{ item }}</a></li>
             {% endfor %}
             </ul>
         </div>

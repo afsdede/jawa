@@ -99,22 +99,25 @@ class DocumentController extends Controller {
     public function listarDocumentoCategoriaAction(User $user, $idCategory) {
 
         $indexView = new DocumentView();
-        $docList = array();
-
+        $catRet = array();
+        $docRet = array();
+        $docYear = array();
+        
         $catController = new CategoriaController();
-        $cat = new Categoria();
 
+        $categoriaAtual = new Categoria();
         if ($idCategory){
             $idCategory = $idCategory;
+            $catAtual = $catController->listAction($categoriaAtual,$idCategory);
+            $categoriaAtual->fetchEntity($catAtual[1]);
         }else {
             $idCategory = '0';
         }
+        $categoriaAtual->setId($idCategory);
         $critDocuments = array(
             'cat_10_id' => $idCategory
         );
-        $docRet = array();
-        $docYear = array();
-
+        
         $doc = new Document();
         $docController = new DocumentController();
         $docList = $docController->listAction($doc, "", $critDocuments);
@@ -123,19 +126,25 @@ class DocumentController extends Controller {
             $newDoc->fetchEntity($vDoc);
             $docYear[] = date("Y",$newDoc->getDate());
         }
+        
         $template = $indexView->getTemplate();
-        return $template->render('/src/DocumentBundle/View/src/listar-documento-categoria.html', array('nome' => $user->getNome(), 'user' => $user, 'catId' => $idCategory ,"docYear" => array_unique($docYear)));
+        return $template->render('/src/DocumentBundle/View/src/listar-documento-categoria.html', array('nome' => $user->getNome(), 'user' => $user, "docYear" => array_unique($docYear), "catAtual" => $categoriaAtual));
     }
     
     public function listarDocumentoCategoriaAnoAction(User $user, $idCategory, $ano) {
         $indexView = new DocumentView();
         $docList = array();
+        $catController = new CategoriaController();
 
-        if ($idCategory){
+        $categoriaAtual = new Categoria();
+        if ($idCategory != ""){
             $idCategory = $idCategory;
+            $catAtual = $catController->listAction($categoriaAtual,$idCategory);
+            $categoriaAtual->fetchEntity($catAtual[1]);
         }else {
             $idCategory = '0';
         }
+        $categoriaAtual->setId($idCategory);
         
         $inicioData = mktime(0, 0, 1, 1, 1, $ano);
         $finalData = mktime(24, 60, 0, 12, 31, $ano);
@@ -169,7 +178,58 @@ class DocumentController extends Controller {
             }
         }
         $template = $indexView->getTemplate();
-        return $template->render('/src/DocumentBundle/View/src/listar-documento-categoria-ano.html', array('nome' => $user->getNome(), 'user' => $user, 'catId' => $idCategory ,"docYear" => $ano, 'listCli' => $cliList));
+        return $template->render('/src/DocumentBundle/View/src/listar-documento-categoria-ano.html', array('nome' => $user->getNome(), 'user' => $user, "catAtual" => $categoriaAtual,"docYear" => $ano, 'listCli' => $cliList));
+    }
+    
+    public function listarDocumentoClienteAction(User $user, $idCategory, $year, $idClient){
+        
+        $indexView = new DocumentView();
+        $docRet = array();
+        
+        $inicioData = mktime(0, 0, 1, 1, 1, $year);
+        $finalData = mktime(24, 60, 0, 12, 31, $year);
+        
+        $categoriaAtual = new Categoria();
+        if ($idCategory){
+            $idCategory = $idCategory;
+            $catAtual = $catController->listAction($categoriaAtual,$idCategory);
+            $categoriaAtual->fetchEntity($catAtual[1]);
+        }else {
+            $idCategory = '0';
+        }
+        $categoriaAtual->setId($idCategory);
+        
+        $client = new Cliente();
+        $clientController = new ClienteController();
+        $cliAtual = $clientController->listAction($client, $idClient);
+        $client->fetchEntity($cliAtual[1]);
+        
+        $critDocuments = array(
+            'cat_10_id' => $idCategory,
+            'doc_10_data' => array(
+                'operator' => '>',
+                'val' => $inicioData
+            ),
+            'doc_10_data' => array(
+                'operator' => '<',
+                'val' => $finalData
+            ),
+            'cli_10_id' => $idClient
+        );
+
+        $doc = new Document();
+        $docController = new DocumentController();
+        $docList = $docController->listAction($doc, "", $critDocuments);
+        
+        foreach($docList as $kDoc => $vDoc){
+            $newDoc = new Document();
+            $newDoc->fetchEntity($vDoc);
+            $docRet[] = $newDoc;
+        }
+        
+        $template = $indexView->getTemplate();
+        return $template->render('/src/DocumentBundle/View/src/listar-documento-cliente.html', array('nome' => $user->getNome(), 'user' => $user, "catAtual" => $categoriaAtual, "cliAtual" => $client, 'docYear' => $year,'listDoc' => $docRet));
+        
     }
 
     public function editarAction(User $user, Document $doc) {
