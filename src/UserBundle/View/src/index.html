@@ -39,15 +39,15 @@
             </div>
     {% endfor %}
     </div>
-    {% if docYear %}
-    <h3>Documentos</h3>
-    <div class="row">
-        {% for keyDoc,itemDoc in docYear %}
-        <ul>
-            <li><a href="listar-documento-categoria-ano?catId={{ catSelected }}&ano={{ itemDoc }}">{{ itemDoc }}</a></li>
-        </ul>
-        {% endfor %}
-    </div>
+    {% if docList %}
+        <h3>Documentos</h3>
+        <div class="row">
+            <ul>
+            {% for key,item in docYear %}
+            <li><a href="listar-documentos-categoria-ano.php?catId={{ catId }}&ano={{ item }}">{{ item }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
     {% endif %}
 </div>
 {% endblock %}
