@@ -27,17 +27,27 @@
                 {% else %}
                 <div style="border: 1px solid #ccc; border-radius: 5px; min-height: 170px;">
                     <div style="height: 120px; position: relative; line-height: 120px;">
-                        <a href="lista-documentos-categoria.php?={{ item.id }}">
+                        <a href="listar-documentos-categoria.php?catId={{ item.id }}">
                             <img src="{{item.getWebImage}}" class="img-rounded" style="vertical-align: middle;"/>
                         </a>
                     </div>
                     <p style="text-align: center; padding-top: 5px;">
-                        <a href="lista-documentos-categoria.php?={{ item.id }}">{{ item.name }}</a>
+                        <a href="listar-documentos-categoria.php?catId={{ item.id }}">{{ item.name }}</a>
                     </p>
                 </div>
                 {% endif %}
             </div>
     {% endfor %}
     </div>
+    {% if docYear %}
+    <h3>Documentos</h3>
+    <div class="row">
+        {% for keyDoc,itemDoc in docYear %}
+        <ul>
+            <li><a href="listar-documento-categoria-ano?catId={{ catSelected }}&ano={{ itemDoc }}">{{ itemDoc }}</a></li>
+        </ul>
+        {% endfor %}
+    </div>
+    {% endif %}
 </div>
 {% endblock %}

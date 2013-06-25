@@ -186,7 +186,6 @@ class UserController extends Controller {
         $doc = new Document();
         $docController = new DocumentController();
         $docList = $docController->listAction($doc, "", $critDocuments);
-        
         foreach($docList as $kDoc => $vDoc){
             $newDoc = new Document();
             $newDoc->fetchEntity($vDoc);
@@ -202,7 +201,7 @@ class UserController extends Controller {
         }
         
         $template = $indexView->getTemplate();
-        return $template->render('/src/UserBundle/View/src/index.html', array('nome' => $user->getNome(), 'user' => $user, 'catList' => $catRet, 'docList' => $docList, "docYear" => array_unique($docYear)));
+        return $template->render('/src/UserBundle/View/src/index.html', array('nome' => $user->getNome(), 'user' => $user, 'catList' => $catRet, 'docList' => $docList, "docYear" => array_unique($docYear), "catSelected" => $idCategory));
     }
 
     public function indexClienteAction(User $user) {

@@ -95,6 +95,38 @@ class DocumentController extends Controller {
         $template = $indexView->getTemplate();
         return $template->render('/src/DocumentBundle/View/src/documentoListar.html', array('nome' => $user->getNome(), 'user' => $user, 'list' => $docList));
     }
+    
+    public function listarDocumentoCategoriaAction(User $user, $idCategory) {
+
+        $indexView = new DocumentView();
+        $docList = array();
+
+        $catController = new CategoriaController();
+        $cat = new Categoria();
+
+        if ($idCategory){
+            $idCategory = $id;
+        }else {
+            $idCategory = '0';
+        }
+        $critDocuments = array(
+            'cat_10_id' => $idCategory
+        );
+        $docRet = array();
+        $docYear = array();
+
+        $doc = new Document();
+        $docController = new DocumentController();
+        $docList = $docController->listAction($doc, "", $critDocuments);
+        foreach($docList as $kDoc => $vDoc){
+            $newDoc = new Document();
+            $newDoc->fetchEntity($vDoc);
+            $docYear[] = date("Y",$newDoc->getDate());
+            $docRet[] = $newDoc;
+        }
+        $template = $indexView->getTemplate();
+        return $template->render('/src/UserBundle/View/src/index.html', array('nome' => $user->getNome(), 'user' => $user, "docYear" => array_unique($docYear)));
+    }
 
     public function editarAction(User $user, Document $doc) {
 
@@ -107,6 +139,9 @@ class DocumentController extends Controller {
             $doc->setClient($_POST['client']);
             $doc->setCategory($_POST['category']);
             $doc->setActive($_POST['active']);
+            $expTime = explode("/", $_POST['date']);
+            $timeDoc = mktime(0, 0, 1, $expTime[1], $expTime[0], $expTime[2]);
+            $doc->setDate($timeDoc);
             if ($_FILES['archive']["name"] != "") {
                 $doc->setArchive($_FILES['archive']);
                 $upload = new Upload("app/upload/" . $doc->getClient() . "/", $doc->getArchive(), "");

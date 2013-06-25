@@ -138,7 +138,7 @@ class CategoriaController extends Controller {
         
         return true;
     }
-
+    
 }
 
 ?>
