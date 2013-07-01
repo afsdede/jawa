@@ -36,9 +36,9 @@ $category = new Categoria();
 
 $catList = $catController->listAction($category);
 
-if (isset($_GET['catId'])){
-    echo $docController->listarDocumentoCategoriaAnoClienteAction($a->fixObject($_SESSION['userLogin']), $_GET['catId'], $_GET['ano'], $_GET['cliId']);
+if (isset($_GET['catId']) && isset($_GET['ano']) && isset($_GET['cliId'])){
+    echo $docController->listarDocumentoClienteAction($a->fixObject($_SESSION['userLogin']), $_GET['catId'], $_GET['ano'], $_GET['cliId']);
 }else {
-    echo $docController->listarDocumentoCategoriaAnoClienteAction($a->fixObject($_SESSION['userLogin']));
+    echo $docController->listarDocumentoClienteAction($a->fixObject($_SESSION['userLogin']));
 }
 ?>

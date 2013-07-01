@@ -6,10 +6,22 @@
 <div class="span8" data-original-title="" title="">
     {% if docYear %}
         <h3>Documentos - Por Ano</h3>
+        {% if catAtual.name %}
+        <ul class="breadcrumb">
+            <li><a href="index.php">Início</a> <span class="divider">/</span></li>
+            <li class="active">Categoria - {{ catAtual.name }}</li>
+        </ul>
+        {% else %}
+        <ul class="breadcrumb">
+            <li><a href="index.php">Início</a> <span class="divider">/</span></li>
+            <li class="active">Principal</li>
+        </ul>
+        {% endif %}
+        <h3>Clientes - Por Ano</h3>
         <div class="row">
             <ul>
             {% for key,item in docYear %}
-            <li><a href="listar-documentos-categoria-ano.php?catId={{ catId }}&ano={{ item }}">{{ item }}</a></li>
+            <li><a href="listar-documentos-categoria-ano.php?catId={{ catAtual.id }}&ano={{ item }}">{{ item }}</a></li>
             {% endfor %}
             </ul>
         </div>

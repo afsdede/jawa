@@ -1,0 +1,44 @@
+{% extends "/app/view/base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block body %}
+<div class="span8" data-original-title="" title="">
+    {% if catAtual.name %}
+        <ul class="breadcrumb">
+            <li><a href="index.php">Início</a> <span class="divider">/</span></li>
+            <li><a href="index.php?catId={{ catAtual.id }}">{{ catAtual.name }}</a> <span class="divider">/</span></li>
+            <li><a href="listar-documentos-categoria-ano.php?catId={{ catAtual.id }}&ano={{ docYear }}">{{ docYear }}</a> <span class="divider">/</span></li>
+            <li class="active">{{ cliAtual.name }}</li>
+        </ul>
+        {% else %}
+        <ul class="breadcrumb">
+            <li><a href="index.php">Início</a> <span class="divider">/</span></li>
+            <li><a href="index.php?catId={{ catAtual.id }}">Principal</a> <span class="divider">/</span></li>
+            <li><a href="listar-documentos-categoria-ano.php?catId={{ catAtual.id }}&ano={{ docYear }}">{{ docYear }}</a> <span class="divider">/</span></li>
+            <li class="active">{{ cliAtual.name }}</li>
+        </ul>
+        {% endif %}
+    <h3>Documentos - {{ cliAtual.name }}</h3>
+    <div class="row">
+        {% for key,item in listDoc %}
+            {% if key != 0 and (key)%3 == 0 %}
+                </div>
+                <div class="row">
+            {% endif %}
+            <div class="span2">
+                <div style="border: 1px solid #ccc; border-radius: 5px; min-height: 170px;">
+                    <div style="height: 120px; position: relative; line-height: 120px;">
+                        <a href="{{item.path}}">
+                            <img src="{{item.image}}" class="img-rounded" style="vertical-align: middle;"/>
+                        </a>
+                    </div>
+                    <p style="text-align: center; padding-top: 5px;">
+                        <a href="{{item.path}}">{{ item.name }}</a>
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

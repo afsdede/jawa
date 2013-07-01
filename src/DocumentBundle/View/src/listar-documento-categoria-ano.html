@@ -5,13 +5,32 @@
 {% block body %}
 <div class="span8" data-original-title="" title="">
     {% if listCli %}
-        <h3>Clientes - em {{ docYear }}</h3>
+        {% if catAtual.name %}
+        <ul class="breadcrumb">
+            <li><a href="index.php">Início</a> <span class="divider">/</span></li>
+            <li><a href="index.php?catId={{ catAtual.id }}">{{ catAtual.name }}</a> <span class="divider">/</span></li>
+            <li class="active">{{ docYear }}</li>
+        </ul>
+        {% else %}
+        <ul class="breadcrumb">
+            <li><a href="index.php">Início</a> <span class="divider">/</span></li>
+            <li><a href="index.php?catId={{ catAtual.id }}">Principal</a> <span class="divider">/</span></li>
+            <li class="active">{{ docYear }}</li>
+        </ul>
+        {% endif %}
+        <h3>Clientes - {{ docYear }}</h3>
         <div class="row">
-            <ul>
             {% for key,item in listCli %}
-            <li><a href="listar-documentos-cliente.php?catId={{ catId }}&ano={{ docYear }}&cliId={{item.id}}">{{ item.name }}</a></li>
+            {% if key != 0 and (key)%3 == 0 %}
+                </div>
+                <div class="row">
+            {% endif %}
+                <div class="span2">
+                    <div style="border: 1px solid #ccc; border-radius: 5px; min-height: 40px; padding-top: 80px; text-align: center;">
+                        <a href="listar-documentos-cliente.php?catId={{ catId }}&ano={{ docYear }}&cliId={{item.id}}">{{ item.name }}</a>
+                    </div>
+                </div>
             {% endfor %}
-            </ul>
         </div>
     {% endif %}
 </div>

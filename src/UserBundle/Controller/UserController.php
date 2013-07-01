@@ -163,25 +163,31 @@ class UserController extends Controller {
     public function indexAction(User $user, $id = "") {
 
         $indexView = new IndexView();
+        $catRet = array();
+        $docRet = array();
+        $docYear = array();
         
         $catController = new CategoriaController();
         $cat = new Categoria();
 
+        $categoriaAtual = new Categoria();
         if ($id){
             $idCategory = $id;
+            $catAtual = $catController->listAction($categoriaAtual,$idCategory);
+            $categoriaAtual->fetchEntity($catAtual[1]);
         }else {
             $idCategory = '0';
         }
+        $categoriaAtual->setId($idCategory);
+        
         $critCategories = array(
             'cat_10_parent' => $idCategory
         );
         $critDocuments = array(
             'cat_10_id' => $idCategory
         );
+        
         $catList = $catController->listAction($cat,"",$critCategories);
-        $catRet = array();
-        $docRet = array();
-        $docYear = array();
 
         $doc = new Document();
         $docController = new DocumentController();
@@ -201,7 +207,7 @@ class UserController extends Controller {
         }
         
         $template = $indexView->getTemplate();
-        return $template->render('/src/UserBundle/View/src/index.html', array('nome' => $user->getNome(), 'user' => $user, 'catList' => $catRet, 'docList' => $docList, "docYear" => array_unique($docYear), "catId" => $idCategory));
+        return $template->render('/src/UserBundle/View/src/index.html', array('nome' => $user->getNome(), 'user' => $user, 'catList' => $catRet, 'docList' => $docList, "docYear" => array_unique($docYear), "catAtual" => $categoriaAtual));
     }
 
     public function indexClienteAction(User $user) {
