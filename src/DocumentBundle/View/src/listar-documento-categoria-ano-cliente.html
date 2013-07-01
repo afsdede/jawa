@@ -1,0 +1,31 @@
+{% extends "/app/view/base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block body %}
+<div class="span8" data-original-title="" title="">
+    {% if docList %}
+        <h3>Listagem de documentos</h3>
+        <div class="row">
+            {% for key,item in docList %}
+                {% if key != 0 and (key)%3 == 0 %}
+                    </div>
+                    <div class="row">
+                {% endif %}
+                <div class="span2">
+                    <div style="border: 1px solid #ccc; border-radius: 5px; min-height: 170px;">
+                        <div style="height: 120px; position: relative; line-height: 120px;">
+                            <a href="{{item.path}}">
+                                <img src="{{item.image}}" class="img-rounded" style="vertical-align: middle;"/>
+                            </a>
+                        </div>
+                        <p style="text-align: center; padding-top: 5px;">
+                            <a href="{{item.path}}">{{ item.name }}</a>
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

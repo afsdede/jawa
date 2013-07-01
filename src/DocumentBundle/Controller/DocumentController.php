@@ -171,6 +171,45 @@ class DocumentController extends Controller {
         $template = $indexView->getTemplate();
         return $template->render('/src/DocumentBundle/View/src/listar-documento-categoria-ano.html', array('nome' => $user->getNome(), 'user' => $user, 'catId' => $idCategory ,"docYear" => $ano, 'listCli' => $cliList));
     }
+    
+    public function listarDocumentoCategoriaAnoClienteAction(User $user, $idCategory, $ano, $idCliente) {
+        $indexView = new DocumentView();
+        $docList = array();
+
+        if ($idCategory){
+            $idCategory = $idCategory;
+        }else {
+            $idCategory = '0';
+        }
+        
+        $inicioData = mktime(0, 0, 1, 1, 1, $ano);
+        $finalData = mktime(24, 60, 0, 12, 31, $ano);
+        
+        $critDocuments = array(
+            'cat_10_id' => $idCategory,
+            'doc_10_data' => array(
+                'operator' => '>',
+                'val' => $inicioData
+            ),
+            'doc_10_data' => array(
+                'operator' => '<',
+                'val' => $finalData
+            ),
+            'cli_10_id' => $idCliente
+        );
+        $docRet = array();
+
+        $doc = new Document();
+        $docController = new DocumentController();
+        $docList = $docController->listAction($doc, "", $critDocuments);
+        foreach($docList as $kDoc => $vDoc){
+            $newDoc = new Document();
+            $newDoc->fetchEntity($vDoc);
+            $docRet[] = $newDoc;
+        }
+        $template = $indexView->getTemplate();
+        return $template->render('/src/DocumentBundle/View/src/listar-documento-categoria-ano-cliente.html', array('nome' => $user->getNome(), 'user' => $user, 'docList' => $docRet));
+    }
 
     public function editarAction(User $user, Document $doc) {
 

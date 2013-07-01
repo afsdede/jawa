@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="span8" data-original-title="" title="">
-    {% if listCli %}
+    {% if docYear %}
         <h3>Documentos - Por Ano</h3>
         <div class="row">
             <ul>
@@ -12,6 +12,11 @@
             <li><a href="listar-documentos-categoria-ano.php?catId={{ catId }}&ano={{ item }}">{{ item }}</a></li>
             {% endfor %}
             </ul>
+        </div>
+    {% else %}
+        <h3>Documentos - Por Ano</h3>
+        <div class="row">
+            Nenhum documento encontrado!
         </div>
     {% endif %}
 </div>

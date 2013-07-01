@@ -106,6 +106,28 @@ class Document implements Entity{
     public function setDate($date) {
         $this->date = $date;
     }
+        
+    public function getImage(){
+        $ext = explode(".", $this->getPath());
+        $extension = $ext[count($ext)-1];
+        
+        if ($extension == "doc" || $extension == "docx"){
+            $imageRep = "doc.png";
+        }elseif ($extension == "ppt" || $extension == "pptx") {
+            $imageRep = "ppt.png";
+        }elseif ($extension == "png" || $extension == "gif" || $extension == "jpg" || $extension == "jpeg" || $extension == "bmp") {
+            $imageRep = "image.png";
+        }elseif ($extension == "zip" || $extension == "rar") {
+            $imageRep = "image.png";
+        }elseif ($extension == "pdf") {
+            $imageRep = "pdf.png";
+        }else {
+            $imageRep = "unknown.png";
+        }
+        
+        return "app/view/images/icones/".$imageRep;
+        
+    }
 
     public function assocEntity() {
         $fields = array(
