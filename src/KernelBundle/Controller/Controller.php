@@ -12,7 +12,7 @@ use KernelBundle\Model\Connection;
  */
 class Controller {
 
-    private $dataBase = "jawa";
+    private $dataBase = "jawa_intranet";
 
     public function __construct() {
 

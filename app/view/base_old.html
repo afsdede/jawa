@@ -35,11 +35,9 @@
                 </div>
             </div>
         </div>
-        {% if user.type == 1 %}
         <div class="header-full">
             <div class="header"></div>
         </div>
-        {% endif %}
         <div class="body-full">
             <div class="body">
                 <div class="menu-left-geral">
@@ -142,11 +140,10 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                <div class="content-geral" style="{% if user.type != 1 %}width: 750px;{% endif %}">
+                <div class="content-geral">
                     {% block body %}
                     {% endblock %}
                 </div>
-                {% if user.type == 999 %}
                 <div class="menu-right-geral">
                     <div class="menu-right-title">
                         Acesso Rápido
@@ -170,12 +167,10 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                {% endif %}
             </div>
         </div>
         <div class="clearfix"></div>
         <div class="footer-full">
-        {% if user.type == 1 %}
             <div class="footer">
                 <div class="row-fluid">
                     <div class="span12" data-original-title="" title="">
@@ -201,7 +196,6 @@
                 </div>
             </div>
             {% block footer %} {% endblock %}
-        {% endif %}
         </div>
     </body>
 </html>

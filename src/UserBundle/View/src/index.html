@@ -3,7 +3,7 @@
 {% block title %}Index{% endblock %}
 
 {% block body %}
-<div class="span8" data-original-title="" title="">
+<div class="span9" data-original-title="" title="">
     {% if catAtual.name %}
     <ul class="breadcrumb">
         <li><a href="index.php">Início</a> <span class="divider">/</span></li>
@@ -22,10 +22,10 @@
             </div>
             <div class="row">
         {% endif %}
-            <div class="span2">
+            <div class="span3">
                 {% if item.hasChild(item.id)%}
-                <div style="border: 1px solid #ccc; border-radius: 5px; min-height: 170px;">
-                    <div style="height: 120px; position: relative; line-height: 120px;">
+                <div style="border: 1px solid #ccc; border-radius: 5px; min-height: 170px; margin-bottom: 10px;">
+                    <div style="margin: 10px; height: 225px; position: relative; line-height: 225px;">
                         <a href="?catId={{ item.id }}">
                             <img src="{{item.getWebImage}}" class="img-rounded" style="vertical-align: middle;"/>
                         </a>
@@ -35,8 +35,8 @@
                     </p>
                 </div>
                 {% else %}
-                <div style="border: 1px solid #ccc; border-radius: 5px; min-height: 170px;">
-                    <div style="height: 120px; position: relative; line-height: 120px;">
+                <div style="border: 1px solid #ccc; border-radius: 5px; min-height: 170px; margin-bottom: 10px;">
+                    <div style="margin: 10px; height: 225px; position: relative; line-height: 225px;">
                         <a href="listar-documentos-categoria.php?catId={{ item.id }}">
                             <img src="{{item.getWebImage}}" class="img-rounded" style="vertical-align: middle;"/>
                         </a>
@@ -49,15 +49,5 @@
             </div>
     {% endfor %}
     </div>
-    {% if docList %}
-        <h3>Documentos - Por Ano</h3>
-        <div class="row">
-            <ul>
-            {% for key,item in docYear %}
-            <li><a href="listar-documentos-categoria-ano.php?catId={{ catAtual.id }}&ano={{ item }}">{{ item }}</a></li>
-            {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
 </div>
 {% endblock %}
